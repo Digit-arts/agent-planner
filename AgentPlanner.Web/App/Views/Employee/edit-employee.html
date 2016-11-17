@@ -1,0 +1,109 @@
+﻿<fieldset ng-init="employeeController.getEmployee(employeeController.$stateParams.employeeId)">
+    <legend>Edit Employee</legend>
+    <form novalidate="" name="form" ng-submit="form.$valid  && employeeController.updateEmployee(form)">
+
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.employeeCode.$invalid}">
+                            <label class="control-label">{{'Employee.Columns.EmployeeCode' | translate}}</label>
+                            <input autocomplete="off" readonly="readonly" type="text" required class="form-control" ng-model="employeeController.employee.employeeCode" name="employeeCode" id="employeeCode" placeholder="Employee Code">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.firstName.$invalid}">
+                            <label class="control-label">{{'Employee.Columns.FirstName' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ng-model="employeeController.employee.firstName" name="firstName" id="firstName" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.lastName.$invalid}">
+                            <label class="control-label">{{'Employee.Columns.LastName' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ng-model="employeeController.employee.lastName" name="lastName" id="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.address.$invalid}">
+                            <label class="control-label">{{'Employee.Columns.Address' | translate}}</label>
+                            <textarea rows="6" autocomplete="off" type="text" class="form-control" ng-model="employeeController.employee.address" name="address" id="address" placeholder="Address"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.address2.$invalid}">
+                            <label class="control-label">{{'Employee.Columns.Address2' | translate}}</label>
+                            <textarea rows="6" autocomplete="off" type="text" class="form-control" ng-model="employeeController.employee.address2" name="address2" id="address2" placeholder="Address2"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.zipCode.$invalid}">
+                            <label class="control-label">{{'Employee.Columns.ZipCode' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ng-model="employeeController.employee.zipCode" name="zipCode" id="zipCode" placeholder="Zip Code"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3" block-ui="profile_picture">
+                <img uploader="employeeController.profilePictureUploader" nv-file-drop  ng-src="{{employeeController.employee.profilePicture}}" style="height: 240px; width: 100%; border: 1px solid black"/>
+                <input type="file" nv-file-select="" uploader="employeeController.profilePictureUploader" class="form-control"/>
+             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.phoneNumber.$invalid}">
+                    <label class="control-label">{{'Employee.Columns.PhoneNumber' | translate}}</label>
+                    <input autocomplete="off" type="text" required class="form-control" ng-model="employeeController.employee.phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.emailAddress.$invalid}">
+                    <label class="control-label">{{'Employee.Columns.EmailAddress' | translate}}</label>
+                    <input autocomplete="off" type="email" required class="form-control" ng-model="employeeController.employee.emailAddress" name="emailAddress" id="emailAddress" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.city.$invalid}">
+                    <label class="control-label">{{'Employee.Columns.City' | translate}}</label>
+                    <input autocomplete="off" type="text" required class="form-control" ng-model="employeeController.employee.city" name="city" id="city" placeholder="City">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.dateOfBirth.$invalid}">
+                    <label class="control-label">{{'Employee.Columns.DateOfBirth' | translate}}</label>
+                    <input date-range-picker="" options="employeeController.employeeDateOfBirthOptions" name="daterange" id="daterange" class="form-control" type="text" ng-model="employeeController.employee.dateOfBirth" required="">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.comments.$invalid}">
+                    <label class="control-label">{{'Employee.Columns.Comments' | translate}}</label>
+                    <textarea autocomplete="off" type="text" class="form-control" ng-model="employeeController.employee.comments" name="comments" id="comments" placeholder="Comments"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.isActive.$invalid}">
+                    <label class="control-label">{{'Employee.Columns.IsActive' | translate}}</label>
+                    <input type="checkbox" ng-model="employeeController.employee.isActive" name="isActive" id="isActive">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-save"></i>
+                        Update employee
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</fieldset>

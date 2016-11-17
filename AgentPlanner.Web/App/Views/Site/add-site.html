@@ -1,0 +1,110 @@
+﻿<fieldset ng-init="siteController.getSites()">
+    <legend>Add Site</legend>
+    <form novalidate="" name="form" ng-submit="form.$valid  && siteController.saveSite(form)">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.siteCode.$invalid}">
+                            <label class="control-label">{{'Site.Columns.SiteCode' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ui-validate-async="{alreadyExists: 'siteController.validateCode($modelValue)' }" ng-model="siteController.site.sideCode" name="siteCode" id="siteCode" placeholder="Site Code">
+                            <span ng-show='form.siteCode.$error.alreadyExists'>This code is already taken!</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.name.$invalid}">
+                            <label class="control-label">{{'Site.Columns.Name' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ng-model="siteController.site.name" name="name" id="name" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.city.$invalid}">
+                            <label class="control-label">{{'Site.Columns.City' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ng-model="siteController.site.city" name="city" id="city" placeholder="City" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.emailAddress.$invalid}">
+                    <label class="control-label">{{'Site.Columns.EmailAddress' | translate}}</label>
+                    <input type="email" required="" autocomplete="off" class="form-control" ng-model="siteController.site.emailAddress" name="emailAddress" id="emailAddress" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.contactName.$invalid}">
+                    <label class="control-label">{{'Site.Columns.ContactName' | translate}}</label>
+                    <input autocomplete="off" type="text" class="form-control" ng-model="siteController.site.contactName" name="contactName" id="contactName" placeholder="Contact Name">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.contactPhoneNumber.$invalid}">
+                    <label class="control-label">{{'Site.Columns.ContactPhoneNumber' | translate}}</label>
+                    <input autocomplete="off" type="text" class="form-control" ng-model="siteController.site.contactPhoneNumber" name="contactPhoneNumber" id="contactPhoneNumber" placeholder="Contact Phone Number">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.zipCode.$invalid}">
+                    <label class="control-label">{{'Site.Columns.ZipCode' | translate}}</label>
+                    <input required="" autocomplete="off" type="text" maxlength="5" class="form-control" ng-model="siteController.site.zipCode" name="zipCode" id="zipCode" placeholder="Zip Code">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.searchClients.$invalid}">
+                    <label class="control-label">{{'Site.Columns.SearchClient' | translate}}</label>
+                    <ui-select spinner-enabled="true" ng-model="siteController.selectedClient" required theme="select2" title="Select a client" placeholder="Search and add select client" style="width: 100%">
+                        <ui-select-match allow-clear="true" placeholder="Start typing to get client name suggestion">{{$select.selected.clientCode}} - {{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices refresh="siteController.getClients($select.search)" refresh-delay="1000" repeat="client in siteController.clients | filter:$select.search">
+                            <p>
+                                Client Code: <b>{{client.clientCode}}</b> - Name: <b>{{client.name}}</b>
+                            </p>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.isActive.$invalid}">
+                    <label class="control-label">{{'Site.Columns.IsActive' | translate}}</label>
+                    <input type="checkbox" ng-model="siteController.site.isActive" name="isActive" id="isActive">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.address.$invalid}">
+                    <label class="control-label">{{'Site.Columns.Address' | translate}}</label>
+                    <textarea rows="6" autocomplete="off" type="text" class="form-control" ng-model="siteController.site.address" name="address" id="address" placeholder="Address"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.address2.$invalid}">
+                    <label class="control-label">{{'Site.Columns.Address2' | translate}}</label>
+                    <textarea rows="6" autocomplete="off" type="text" class="form-control" ng-model="siteController.site.address2" name="address2" id="address2" placeholder="Address2"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.comments.$invalid}">
+                    <label class="control-label">{{'Site.Columns.Comments' | translate}}</label>
+                    <textarea rows="6" ng-model="siteController.site.comments" class="form-control" name="comments" id="comments" placeholder="Comments"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-save"></i>
+                        Add site
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</fieldset>

@@ -1,0 +1,97 @@
+﻿<fieldset ng-init="contractController.getBillingFrequencyTypes();contractController.getContractTypes();contractController.getAssignmentTypes()">
+    <legend>Add Contract</legend>
+    <form novalidate="" name="form" ng-submit="form.$valid  && contractController.addContract(form)">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.startDate.$invalid}">
+                            <label class="control-label">{{'Contract.Columns.StartDate' | translate}}</label>
+                            <input date-range-picker="" min="contractController.minContractStartDate" options="contractController.datePickerOptions" name="startDate" id="startDate" class="form-control" type="text" ng-model="contractController.contract.startDate" required="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.endDate.$invalid}">
+                            <label class="control-label">{{'Contract.Columns.EndDate' | translate}}</label>
+                            <input date-range-picker="" min="contractController.contract.startDate" options="contractController.datePickerOptions" name="endDate" id="endDate" class="form-control" type="text" ng-model="contractController.contract.endDate" required="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.contractTypes.$invalid}">
+                            <label class="control-label">{{'Contract.Columns.ContractType' | translate}}</label>
+                            <select required ng-model="contractController.contract.contractTypeId" class="form-control" name="contractTypes" id="contractTypes" ng-options="contractType.id as contractType.typeName for contractType in contractController.contractTypes"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.billingRate.$invalid}">
+                    <label class="control-label">{{'Contract.Columns.BillingRate' | translate}}</label>
+                    <input autocomplete="off" type="text" required class="form-control" ng-model="contractController.contract.billingRate" name="billingRate" id="billingRate" placeholder="Billing Rate">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.billingFrequencyTypes.$invalid}">
+                    <label class="control-label">{{'Contract.Columns.BillingFrequencies' | translate}}</label>
+                    <select required ng-model="contractController.contract.billingFrequencyId" class="form-control" name="billingFrequencyTypes" id="billingFrequencyTypes" ng-options="billingFrequencyType.id as billingFrequencyType.frequency for billingFrequencyType in contractController.billingFrequencyTypes"></select>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.assignmentTypes.$invalid}">
+                    <label class="control-label">{{'Contract.Columns.AssignmentTypes' | translate}}</label>
+                    <select required ng-model="contractController.contract.assignmentTypeId" class="form-control" name="assignmentTypes" id="assignmentTypes" ng-options="assignmentType.id as assignmentType.typeName for assignmentType in contractController.assignmentTypes"></select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.nightTimeRateIncrease.$invalid}">
+                    <label class="control-label">{{'Contract.Columns.NightTimeRateIncrease' | translate}}</label>
+                    <input type="checkbox" ng-model="contractController.contract.nightTimeRateIncrease" name="nightTimeRateIncrease" id="nightTimeRateIncrease">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.sundayRateIncrease.$invalid}">
+                    <label class="control-label">{{'Contract.Columns.SundayRateIncrease' | translate}}</label>
+                    <input type="checkbox" ng-model="contractController.contract.sundayRateIncrease"  name="sundayRateIncrease" id="sundayRateIncrease">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.publicHolidayRateIncrease.$invalid}">
+                    <label class="control-label">{{'Contract.Columns.PublicHolidayRateIncrease' | translate}}</label>
+                    <input type="checkbox" ng-model="contractController.contract.publicHolidayRateIncrease" name="publicHolidayRateIncrease" id="publicHolidayRateIncrease">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.isActive.$invalid}">
+                    <label class="control-label">{{'Contract.Columns.IsActive' | translate}}</label>
+                    <input type="checkbox" ng-model="contractController.contract.isActive"  name="isActive" id="isActive">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.comments.$invalid}">
+                    <label class="control-label">{{'Contract.Columns.Comments' | translate}}</label>
+                    <textarea autocomplete="off" type="text" class="form-control" ng-model="contractController.contract.comments" name="comments" id="comments" placeholder="Comments"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-save"></i>
+                        Add Contract
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</fieldset>

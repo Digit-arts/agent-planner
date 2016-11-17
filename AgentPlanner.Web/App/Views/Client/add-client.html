@@ -1,0 +1,111 @@
+﻿<fieldset ng-init="clientController.getPaymentMethods()">
+    <legend>Add Client</legend>
+    <form novalidate="" name="form" ng-submit="form.$valid  && clientController.saveClient(form)">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.clientCode.$invalid}">
+                            <label class="control-label">{{'Client.Columns.ClientCode' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ng-model="clientController.client.clientCode" ui-validate-async="{alreadyExists: 'clientController.validateCode($modelValue)' }" name="clientCode" id="clientCode" placeholder="Client Code">
+                            <span ng-show='form.clientCode.$error.alreadyExists'>This code is already taken!</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.name.$invalid}">
+                            <label class="control-label">{{'Client.Columns.Name' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ng-model="clientController.client.name" name="name" id="name" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.city.$invalid}">
+                            <label class="control-label">{{'Client.Columns.City' | translate}}</label>
+                            <input autocomplete="off" type="text" required class="form-control" ng-model="clientController.client.city" name="city" id="city" placeholder="City" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.vatNumber.$invalid}">
+                    <label class="control-label">{{'Client.Columns.VatNumber' | translate}}</label>
+                    <input autocomplete="off" type="text" required class="form-control" ng-model="clientController.client.vatNumber" name="vatNumber" id="phoneNumber" placeholder="Vat Number">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.contactName.$invalid}">
+                    <label class="control-label">{{'Client.Columns.ContactName' | translate}}</label>
+                    <input autocomplete="off" type="text" class="form-control" ng-model="clientController.client.contactName" name="contactName" id="contactName" placeholder="Contact Name">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.contactPhoneNumber.$invalid}">
+                    <label class="control-label">{{'Client.Columns.ContactPhoneNumber' | translate}}</label>
+                    <input autocomplete="off" type="text" class="form-control" ng-model="clientController.client.contactPhoneNumber" name="contactPhoneNumber" id="contactPhoneNumber" placeholder="Contact Phone Number">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.emailAddress.$invalid}">
+                    <label class="control-label">{{'Client.Columns.EmailAddress' | translate}}</label>
+                    <input type="email" required="" autocomplete="off" class="form-control" ng-model="clientController.client.emailAddress" name="emailAddress" id="emailAddress" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.zipCode.$invalid}">
+                    <label class="control-label">{{'Client.Columns.ZipCode' | translate}}</label>
+                    <input required="" autocomplete="off" maxlength="5" type="text" class="form-control" ng-model="clientController.client.zipCode" name="zipCode" id="zipCode" placeholder="Zip Code">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.paymentMethods.$invalid}">
+                    <label class="control-label">{{'Client.Columns.PaymentMethods' | translate}}</label>
+                    <select required ng-model="clientController.client.paymentMethodId" class="form-control" name="paymentMethods" id="paymentMethods" ng-options="paymentMethod.id as paymentMethod.methodName for paymentMethod in clientController.paymentMethods"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.address.$invalid}">
+                    <label class="control-label">{{'Client.Columns.Address' | translate}}</label>
+                    <textarea rows="6" autocomplete="off" type="text" class="form-control" ng-model="clientController.client.address" name="address" id="address" placeholder="Address"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.address2.$invalid}">
+                    <label class="control-label">{{'Client.Columns.Address2' | translate}}</label>
+                    <textarea rows="6" autocomplete="off" type="text" class="form-control" ng-model="clientController.client.address2" name="address2" id="address2" placeholder="Address2"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.comments.$invalid}">
+                    <label class="control-label">{{'Client.Columns.Comments' | translate}}</label>
+                    <textarea rows="6" ng-model="clientController.client.comments" class="form-control" name="comments" id="comments" placeholder="Comments"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.isActive.$invalid}">
+                    <label class="control-label">{{'Client.Columns.IsActive' | translate}}</label>
+                    <input type="checkbox" ng-model="clientController.client.isActive" name="isActive" id="isActive">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-save"></i>
+                        Add Client
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</fieldset>
