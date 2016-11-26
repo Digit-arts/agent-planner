@@ -28,6 +28,7 @@ namespace AgentPlanner.ViewModels.Mappers
                 IsActive = client.IsActive,
                 CreatedDate = client.CreatedDate,
                 ModificationDate = client.ModificationDate,
+                HourlyRate=client.HourlyRate,
                 PaymentMethod = client.PaymentMethod.ToVm()
             };
         }

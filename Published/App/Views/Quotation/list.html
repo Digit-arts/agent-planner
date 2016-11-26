@@ -1,0 +1,57 @@
+﻿<fieldset ng-init="quotationController.getAllQuotationsBySite()">
+    <legend>Quotations</legend>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <a class="btn btn-primary" ui-sref="sites.quotations.new({siteId: quotationController.$stateParams.siteId})">
+                    <i class="fa fa-plus"></i>
+                    {{'Quotation.ADD_NEW' |translate}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row m-t-10">
+        <div class="table-responsive">
+            <table class="table table-condensed table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>{{'Quotation.Columns.Client' | translate}}</th>
+                    <th>{{'Quotation.Columns.StartDate' | translate}}</th>
+                    <th>{{'Quotation.Columns.EndDate' | translate}}</th>
+                    <th>{{'Quotation.Columns.ContractType' | translate}}</th>
+                    <th>{{'Quotation.Columns.BillingRate' | translate}}</th>
+                    <th>{{'Quotation.Columns.BillingFrequency' | translate}}</th>
+                    <!--<th>{{'Quotation.Columns.NightTimeRateIncrease' | translate}}</th>
+                    <th>{{'Quotation.Columns.SundayRateIncrease' | translate}}</th>
+                    <th>{{'Quotation.Columns.PublicHolidayRateIncrease' | translate}}</th>-->
+                    <th>{{'Quotation.Columns.Total_Hours' | translate}}</th>
+                    <th>{{'Quotation.Columns.Total_Cost' | translate}}</th>
+                    <th>{{'Quotation.Columns.Quotation_Date' | translate}} (UTC)</th>
+                    <th class="text-nowrap"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="q in quotationController.quotations">
+                    <td ng-bind="q.client.name + '('+ q.client.clientCode +')'"></td>
+                    <td ng-bind="q.startDate | date:'shortDate'"></td>
+                    <td ng-bind="q.endDate | date:'shortDate'"></td>
+                    <td ng-bind="q.contractType.typeName"></td>
+                    <td ng-bind="q.billingRate"></td>
+                    <td ng-bind="q.billingFrequency.frequency"></td>
+                    <td ng-bind="q.totalHours"></td>
+                    <td ng-bind="q.totalCost | currency"></td>
+                    <td ng-bind="q.dateAdded | date:'short'"></td>
+                    <!--<td ng-bind="q.nightTimeRateIncrease"></td>
+                    <td ng-bind="q.sundayRateIncrease"></td>
+                    <td ng-bind="q.publicHolidayRateIncrease"></td>-->
+                    <td>
+                        <button class="btn btn-info" uib-tooltip="Print quotation" ng-click="quotationController.export(q.id)">
+                            <i class="fa fa-print"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>

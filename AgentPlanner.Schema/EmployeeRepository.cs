@@ -71,14 +71,14 @@ namespace AgentPlanner.Repositories
         }
 
 
-        public IEnumerable<Employee> SearchTerm(string searchTerm)
+        public IEnumerable<Employee> SearchTerm(string searchTerm, int employeeTypeId)
         {
             return
                 GetIQueryable()
                     .Where(
                         x =>
-                            x.EmailAddress.Contains(searchTerm) || x.EmployeeCode.Contains(searchTerm) ||
-                            x.FirstName.Contains(searchTerm) || x.LastName.Contains(searchTerm));
+                            (x.EmailAddress.Contains(searchTerm) || x.EmployeeCode.Contains(searchTerm) ||
+                            x.FirstName.Contains(searchTerm) || x.LastName.Contains(searchTerm)) && x.EmployeeTypeId == employeeTypeId);
         }
 
 

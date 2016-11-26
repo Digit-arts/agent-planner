@@ -38,9 +38,11 @@ namespace AgentPlanner.DataAccess
         public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedDate { get; set; }
         public Nullable<System.DateTime> ModificationDate { get; set; }
+        public byte EmployeeTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Assignment> Assignments { get; set; }
+        public virtual EmployeeType EmployeeType { get; set; }
         public virtual Resource Resource { get; set; }
     }
 }

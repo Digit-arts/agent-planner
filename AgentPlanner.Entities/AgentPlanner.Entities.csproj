@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Billing\Quotation.cs" />
     <Compile Include="Client\Client.cs" />
     <Compile Include="Client\PaymentMethod.cs" />
     <Compile Include="Client\Site.cs" />
@@ -58,6 +59,8 @@
     <Compile Include="Contract\ContractType.cs" />
     <Compile Include="Employee\Assignment.cs" />
     <Compile Include="Employee\Employee.cs" />
+    <Compile Include="Employee\EmployeeType.cs" />
+    <Compile Include="Employee\SiteEmployeeType.cs" />
     <Compile Include="Enums\AssignmentTypes.cs" />
     <Compile Include="Enums\BillingFrequencies.cs" />
     <Compile Include="Enums\ContractTypes.cs" />

@@ -67,9 +67,12 @@
     <Compile Include="Contarct\IRepository.cs" />
     <Compile Include="ContractRepository.cs" />
     <Compile Include="EmployeeRepository.cs" />
+    <Compile Include="EmployeeTypeRepository.cs" />
     <Compile Include="PaymentMethodRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuotationRepository.cs" />
     <Compile Include="ResourceRepository.cs" />
+    <Compile Include="SiteEmployeeTypeRepository.cs" />
     <Compile Include="SiteRepository.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>

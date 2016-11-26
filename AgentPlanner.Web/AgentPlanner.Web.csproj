@@ -217,8 +217,11 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeeTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\PaymentMethodController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,6 +230,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\TemplatePath.cs" />
     <Compile Include="Models\Utility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -240,14 +244,18 @@
     <Content Include="App\Controllers\appController.js" />
     <Content Include="App\Controllers\assignmentController.js" />
     <Content Include="App\Controllers\clientController.js" />
+    <Content Include="App\Controllers\invoiceController.js" />
     <Content Include="App\Controllers\contractController.js" />
     <Content Include="App\Controllers\empoyeeController.js" />
+    <Content Include="App\Controllers\quotationController.js" />
     <Content Include="App\Controllers\siteController.js" />
     <Content Include="App\Routes\account.routes.js" />
     <Content Include="App\Routes\app.routes.js" />
     <Content Include="App\Routes\clients.routes.js" />
     <Content Include="App\Routes\contracts.routes.js" />
     <Content Include="App\Routes\employees.routes.js" />
+    <Content Include="App\Routes\invoice.routes.js" />
+    <Content Include="App\Routes\quotation.routes.js" />
     <Content Include="App\Routes\site.routes.js" />
     <Content Include="App\Services\accountService.js" />
     <Content Include="App\Services\assignmentService.js" />
@@ -255,6 +263,10 @@
     <Content Include="App\Services\billingFrequencyTypeService.js" />
     <Content Include="App\Services\clientService.js" />
     <Content Include="App\Services\contractService.js" />
+    <Content Include="App\Services\invoiceService.js" />
+    <Content Include="App\Services\quotationService.js" />
+    <Content Include="App\Services\siteEmployeeTypeService.js" />
+    <Content Include="App\Services\employeeTypeService.js" />
     <Content Include="App\Services\contractTypeService.js" />
     <Content Include="App\Services\employeeService.js" />
     <Content Include="App\Services\httpInterceptorService.js" />
@@ -277,10 +289,14 @@
     <Content Include="App\Views\Contracts\assign-to-employee.html" />
     <Content Include="App\Views\Contracts\contracts-list.html" />
     <Content Include="App\Views\Contracts\edit-contract.html" />
+    <Content Include="App\Views\Dialogs\QuotationHoursPerDay.html" />
     <Content Include="App\Views\Employee\edit-employee.html" />
     <Content Include="App\Views\Employee\add-employee.html" />
     <Content Include="App\Views\Employee\employees-list.html" />
     <Content Include="App\Views\Home\index.html" />
+    <Content Include="App\Views\invoice\list.html" />
+    <Content Include="App\Views\Quotation\list.html" />
+    <Content Include="App\Views\Quotation\new.html" />
     <Content Include="App\Views\Site\edit-site.html" />
     <Content Include="App\Views\Site\add-site.html" />
     <Content Include="App\Views\Site\sites-list.html" />
@@ -661,6 +677,11 @@
     <Content Include="Scripts\bower_components\jquery\src\var\support.js" />
     <Content Include="Scripts\bower_components\jquery\src\var\toString.js" />
     <Content Include="Scripts\bower_components\jquery\src\wrap.js" />
+    <Content Include="Scripts\bower_components\moment-range\dist\moment-range.js" />
+    <Content Include="Scripts\bower_components\moment-range\dist\moment-range.min.js" />
+    <Content Include="Scripts\bower_components\moment-range\Gruntfile.js" />
+    <Content Include="Scripts\bower_components\moment-range\lib\moment-range.js" />
+    <Content Include="Scripts\bower_components\moment-range\test\moment-range.js" />
     <Content Include="Scripts\bower_components\moment\locale\af.js" />
     <Content Include="Scripts\bower_components\moment\locale\ar-ly.js" />
     <Content Include="Scripts\bower_components\moment\locale\ar-ma.js" />
@@ -992,6 +1013,7 @@
     <Content Include="Scripts\bower_components\angular-translate\.bower.json" />
     <Content Include="Scripts\bower_components\angular-translate\bower.json" />
     <Content Include="Scripts\bower_components\angular-translate\README.md" />
+    <Content Include="App_Data\templates.json" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="Scripts\bower_components\bootstrap-daterangepicker\example\browserify\README.md" />
     <Content Include="Scripts\bower_components\bootstrap-daterangepicker\.bower.json" />
@@ -1170,6 +1192,11 @@
     <Content Include="Scripts\bower_components\fullcalendar\CHANGELOG.md" />
     <Content Include="Scripts\bower_components\fullcalendar\CONTRIBUTING.md" />
     <Content Include="Scripts\bower_components\fullcalendar\README.md" />
+    <Content Include="Scripts\bower_components\moment-range\.bower.json" />
+    <Content Include="Scripts\bower_components\moment-range\bower.json" />
+    <Content Include="Scripts\bower_components\moment-range\package.json" />
+    <Content Include="Scripts\bower_components\moment-range\README.md" />
+    <Content Include="Scripts\bower_components\moment-range\UNLICENSE" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1233,13 +1260,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Templates\Quotation.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Views\Dialogs\" />
-    <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>

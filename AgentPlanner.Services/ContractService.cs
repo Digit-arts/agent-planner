@@ -57,5 +57,17 @@ namespace AgentPlanner.Services
             }
             return siteContracts.ToArray();
         }
+
+        public Contract[] GetContractsAsInvoiceForSite(int siteId)
+        {
+            return _contractRepository.GetContractsAsInvoices(siteId).ToDto();
+        }
+
+        public int CreateInvoiceForContract(int contractId)
+        {
+            var contract = _contractRepository.Get(contractId);
+            contract.InvoiceNumber = 1;
+            return _contractRepository.Update(contract);
+        }
     }
 }

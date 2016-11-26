@@ -1,0 +1,27 @@
+﻿<div class="modal-content">
+    <form name="form" ng-submit="form.$valid && save()">
+        <div class="modal-header">
+            <button class="close" ng-click="$dismiss()">x</button>
+            <h4>{{'Quotation.Dialog.Add_hours' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-4" ng-repeat="d in dates">
+                    <div class="form-group">
+                        <label class="control-label">
+                            {{d.date}}
+                        </label>
+                        <input class="form-control" type="number" ng-model="d.hours" required="" name="hours_{{$index}}"/>
+                        <p class="text-danger" ng-if="form.$submitted && form['hours_' + $index].$invalid">Required</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-hourglass-o"></i>
+                {{'Quotation.Dialog.OK' | translate}}
+            </button>
+        </div>
+    </form>
+</div>

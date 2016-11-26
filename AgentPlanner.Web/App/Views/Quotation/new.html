@@ -1,0 +1,106 @@
+﻿<fieldset ng-init="quotationController.initNewQuotation()">
+    <legend>New Quotation</legend>
+    <form novalidate="" name="form" ng-submit="form.$valid  && quotationController.addQuotation(form)">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.client.$invalid}">
+                            <label class="control-label">{{'Quotation.Columns.Select_Client' | translate}}</label>
+                            <ui-select on-select="quotationController.onClientSelect($item,$model)" spinner-enabled="true" ng-model="quotationController.selectedClient" required theme="select2" title="Select a client" placeholder="Search and add select client" style="width: 100%">
+                                <ui-select-match allow-clear="true" placeholder="Start typing to get client name suggestion">{{$select.selected.clientCode}} - {{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices refresh="quotationController.getClients($select.search)" refresh-delay="1000" repeat="client in quotationController.clients | filter:$select.search">
+                                    <p>
+                                        Client Code: <b>{{client.clientCode}}</b> - Name: <b>{{client.name}}</b>
+                                    </p>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.duration.$invalid}">
+                            <label class="control-label">{{'Quotation.Columns.Duration' | translate}}</label>
+                            <input min="quotationController.minStartDate" date-range-picker="" options="quotationController.dateRangeOptions" name="duration" id="duration" class="form-control" type="text" ng-model="quotationController.quotation.duration" required="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.contractTypes.$invalid}">
+                            <label class="control-label">{{'Quotation.Columns.ContractType' | translate}}</label>
+                            <select required ng-model="quotationController.quotation.contractTypeId" class="form-control" name="contractTypes" id="contractTypes" ng-options="contractType.id as contractType.typeName for contractType in quotationController.contractTypes"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.billingRate.$invalid}">
+                    <label class="control-label">{{'Quotation.Columns.BillingRate' | translate}}</label>
+                    <input autocomplete="off" type="text" required class="form-control" ng-model="quotationController.quotation.billingRate" name="billingRate" id="billingRate" placeholder="Billing Rate">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.billingFrequencyTypes.$invalid}">
+                    <label class="control-label">{{'Quotation.Columns.BillingFrequencies' | translate}}</label>
+                    <select required ng-model="quotationController.quotation.billingFrequencyId" disabled="disabled" class="form-control" name="billingFrequencyTypes" id="billingFrequencyTypes" ng-options="billingFrequencyType.id as billingFrequencyType.frequency for billingFrequencyType in quotationController.billingFrequencyTypes"></select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.nightTimeRateIncrease.$invalid}">
+                    <label class="control-label">{{'Quotation.Columns.NightTimeRateIncrease' | translate}}</label>
+                    <input type="checkbox" ng-model="quotationController.quotation.nightTimeRateIncrease" name="nightTimeRateIncrease" id="nightTimeRateIncrease">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.sundayRateIncrease.$invalid}">
+                    <label class="control-label">{{'Quotation.Columns.SundayRateIncrease' | translate}}</label>
+                    <input type="checkbox" ng-model="quotationController.quotation.sundayRateIncrease"  name="sundayRateIncrease" id="sundayRateIncrease">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group" ng-class="{'has-error' : form.$submitted && form.publicHolidayRateIncrease.$invalid}">
+                    <label class="control-label">{{'Quotation.Columns.PublicHolidayRateIncrease' | translate}}</label>
+                    <input type="checkbox" ng-model="quotationController.quotation.publicHolidayRateIncrease" name="publicHolidayRateIncrease" id="publicHolidayRateIncrease">
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-if="quotationController.quotation.hoursPerDay.length>0">
+            <div class="col-lg-4">
+                <p>{{'Quotation.Total_Hours' | translate}}: {{quotationController.quotation.totalHours}}</p>
+                <p>{{'Quotation.Total_Cost' | translate}}: {{(quotationController.quotation.totalHours * quotationController.quotation.billingRate) | currency}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pull-right">
+                    <button ng-disabled="form.$invalid" type="button" ng-if="quotationController.quotation.id == undefined || quotationController.quotation.id == 0" class="btn btn-info" ng-click="quotationController.takeHoursInput()">
+                        <i class="fa fa-hourglass"></i>
+                        {{'Quotation.ADD_Update_Hours' | translate}}
+                    </button>
+                    <button type="submit" class="btn btn-info" ng-if="quotationController.quotation.hoursPerDay.length>0 && (quotationController.quotation.id == undefined || quotationController.quotation.id == 0)">
+                        <i class="fa fa-save"></i>
+                        {{'Quotation.ADD_QUOTATION' | translate}}
+                    </button>
+
+
+                    <button type="button" ng-click="quotationController.quotation = {}" ng-if="quotationController.quotation.id > 0" class="btn btn-warning">
+                        <i class="fa fa-trash"></i>
+                        Clear
+                    </button>
+
+                    <button type="button" ng-click="quotationController.export(quotationController.quotation.id)" ng-if="quotationController.quotation.id > 0" class="btn btn-primary">
+                        <i class="fa fa-print"></i>
+                        Print Quotation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</fieldset>

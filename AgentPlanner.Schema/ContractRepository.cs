@@ -34,6 +34,7 @@ namespace AgentPlanner.Repositories
             contract.SundayRateIncrease = model.SundayRateIncrease;
             contract.PublicHolidayRateIncrease = model.PublicHolidayRateIncrease;
             contract.AssignmentTypeId = model.AssignmentTypeId;
+            contract.InvoiceNumber = model.InvoiceNumber;
             return SaveChanges();
         }
 
@@ -64,6 +65,13 @@ namespace AgentPlanner.Repositories
                 .AsNoTracking()
                 .Skip(() => skipSize)
                 .Take(() => pageSize)
+                .ToArray();
+        }
+
+        public Contract[] GetContractsAsInvoices(int siteId)
+        {
+            return GetIQueryable().Where(x => x.SiteId == siteId && x.InvoiceNumber.HasValue)
+                .AsNoTracking()
                 .ToArray();
         }
 

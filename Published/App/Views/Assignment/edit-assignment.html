@@ -1,0 +1,46 @@
+﻿<div class="modal-header">
+    <button type="button" ng-click="editAssignmentModalController.cancel()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Modify Contract Assignment</h4>
+</div>
+
+
+
+
+<form name="form" ng-submit="form.$valid && editAssignmentModalController.modifyAssignment()" novalidate>
+    <div class="modal-body">
+
+        <div class="help-block">{{error}}</div>
+        <!-- NAME -->
+        <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : form.$submitted && form.searchEmployees.$invalid}">
+                <label class="control-label">{{'Assignment.Columns.SearchEmployee' | translate}}</label>
+                <ui-select spinner-enabled ng-model="editAssignmentModalController.selectedEmployee" required theme="select2" title="Select an employee" placeholder="Search and add select employee" style="width: 100%">
+                    <ui-select-match allow-clear="true" placeholder="Start typing to get employee name suggestion">{{$select.selected.employeeCode}} - {{$select.selected.firstName}} {{$select.selected.lastName}}</ui-select-match>
+                    <ui-select-choices refresh="editAssignmentModalController.getEmployees($select.search)" refresh-delay="1000" repeat="employee in editAssignmentModalController.employees | filter:$select.search">
+                        <p>Employee Code: <b>{{employee.employeeCode}}</b> - Name: <b>{{employee.firstName}} {{employee.lastName}}</b></p>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : form.$submitted && form.paymentMethods.$invalid}">
+                <label class="control-label">{{'Assignment.Columns.TypeName' | translate}}</label>
+                <select required ng-model="editAssignmentModalController.assignment.assignmentTypeId" class="form-control" name="paymentMethods" id="paymentMethods" ng-options="assignmentType.id as assignmentType.typeName for assignmentType in editAssignmentModalController.assignmentTypes"></select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="form-group" ng-class="{'has-error' : form.$submitted && form.startDate.$invalid}">
+                <label class="control-label">{{'Assignment.Columns.Duration' | translate}}</label>
+                <input date-range-picker="" min="editAssignmentModalController.minAssignmentStartDate" max="editAssignmentModalController.maxAssignmentStartDate" options="editAssignmentModalController.datePickerOptions" name="startDate" id="startDate" class="form-control" type="text" ng-model="editAssignmentModalController.assignment.duration" required="">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.groupForm.$invalid || disableSendButton">Update</button>
+        <a class="btn btn-warning" ng-click="editAssignmentModalController.cancel()">Cancel</a>
+    </div>
+</form>
+

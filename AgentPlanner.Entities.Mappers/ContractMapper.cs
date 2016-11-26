@@ -85,7 +85,8 @@ namespace AgentPlanner.Entities.Mappers
                 PublicHolidayRateIncrease = contract.PublicHolidayRateIncrease,
                 SiteId = contract.SiteId,
                 StartDate = contract.StartDate,
-                SundayRateIncrease = contract.SundayRateIncrease
+                SundayRateIncrease = contract.SundayRateIncrease,
+                InvoiceNumber = contract.InvoiceNumber
             };
         }
 
@@ -109,9 +110,11 @@ namespace AgentPlanner.Entities.Mappers
                 SiteId = contract.SiteId,
                 StartDate = contract.StartDate,
                 SundayRateIncrease = contract.SundayRateIncrease,
+                InvoiceNumber = contract.InvoiceNumber,
                 BillingFrequency = contract.BillingFrequency.ToDto(),
                 ContractType = contract.ContractType.ToDto(),
-                AssignmentType = contract.AssignmentType.ToDto()
+                AssignmentType = contract.AssignmentType.ToDto(),
+                Site = contract.Site.ToDto()
             };
         }
 

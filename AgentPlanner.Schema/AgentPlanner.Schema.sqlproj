@@ -86,6 +86,9 @@
     <Build Include="dbo\Tables\BillingFrequency.sql" />
     <Build Include="dbo\Tables\AssignmentType.sql" />
     <Build Include="dbo\Tables\Assignment.sql" />
+    <Build Include="dbo\Tables\EmployeeType.sql" />
+    <Build Include="dbo\Tables\SiteEmployeeType.sql" />
+    <Build Include="dbo\Tables\Quotation.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />

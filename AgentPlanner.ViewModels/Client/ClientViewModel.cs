@@ -18,6 +18,7 @@ namespace AgentPlanner.ViewModels.Client
         public string EmailAddress { get; set; }
         public byte PaymentMethodId { get; set; }
         public string Comments { get; set; }
+        public double HourlyRate { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModificationDate { get; set; }

@@ -1,0 +1,99 @@
+﻿@model AgentPlanner.ViewModels.Billing.QuotationViewModel
+@using AgentPlanner.ViewModels.Billing
+<style>
+    .col-lg-6,
+    .col-sm-6 {
+        width: 50%;
+        float: left;
+    }
+
+    /*.table > thead > tr > td.success,
+    .table > tbody > tr > td.success,
+    .table > tfoot > tr > td.success,
+    .table > thead > tr > th.success,
+    .table > tbody > tr > th.success,
+    .table > tfoot > tr > th.success,
+    .table > thead > tr.success > td,
+    .table > tbody > tr.success > td,
+    .table > tfoot > tr.success > td,
+    .table > thead > tr.success > th,
+    .table > tbody > tr.success > th,
+    .table > tfoot > tr.success > th {
+        background-color: grey;
+    }*/
+
+    .table > thead > tr > th,
+    .table > thead > tr > td {
+        text-align: center;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <p>
+                <b>Admin Company Name</b>
+            </p>
+            <p>
+                <b>SIRET</b>: Admin company siret
+            </p>
+            <p>
+                <b>TVA</b>: Admin Company VAT
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p>
+                <b>@Model.Client.Name</b>
+            </p>
+            <p>
+                <b>SIRET</b>: Admin company siret
+            </p>
+            <p>
+                <b>TVA</b>: @Model.Client.VatNumber
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div>
+                <b>Generation Date: </b> @Model.DateAdded
+            </div>
+            <p>
+                <h2>Devis n° @Model.Id</h2>
+            </p>
+            <p>@Model.Client.Address</p>
+            <p>@Model.Client.Address2</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-condensed table-bordered text-center">
+                <thead>
+                    <tr class="warning">
+                        <th>Site</th>
+                        <th>Date de début</th>
+                        <th> Date de fin</th>
+                        <th>Type de prestation</th>
+                        <th> Nombre d'heures </th>
+                        <th>Tarif horraire </th>
+                        <th>TOTAL HT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="info">
+                        <td>@Model.Site.Name</td>
+                        <td>@Model.StartDate.ToString("d")</td>
+                        <td>@Model.EndDate.ToString("d")</td>
+                        <td>@Model.ContractType.TypeName</td>
+                        <td>@Model.TotalHours</td>
+                        <td>@Model.BillingRate.ToString("C")</td>
+                        <td>@Model.TotalCost.ToString("C")</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align: right"><b>Total</b></td>
+                        <td colspan="1"><b>@Model.TotalCost.ToString("C")</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

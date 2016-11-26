@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Transactions;
 using AgentPlanner.Entities.Client;
 using AgentPlanner.Entities.Exceptions;
 using AgentPlanner.Entities.Mappers;
@@ -10,10 +11,13 @@ namespace AgentPlanner.Services
     public class SiteService
     {
         private readonly SiteRepository _siteRepository;
+        private readonly SiteEmployeeTypeService _siteEmployeeTypeService;
 
         public SiteService()
         {
             _siteRepository = new SiteRepository();
+            _siteEmployeeTypeService = new SiteEmployeeTypeService();
+
         }
 
         public Site GetSite(int siteId)
@@ -29,7 +33,14 @@ namespace AgentPlanner.Services
 
             site.SideCode = siteCode;
 
-            return _siteRepository.Add(site.ToDbo());
+            using (var scope = new TransactionScope())
+            {
+                var id = _siteRepository.Add(site.ToDbo());
+
+                _siteEmployeeTypeService.AddSiteEmployeeTypes(id, site.SiteEmployeeTypes);
+                scope.Complete();
+                return id;
+            }
         }
 
         public int UpdateSite(int siteId, Site site)
@@ -50,7 +61,14 @@ namespace AgentPlanner.Services
             }
 
 
-            return _siteRepository.Update(site.ToDbo());
+            using (var scope = new TransactionScope())
+            {
+                var res = _siteRepository.Update(site.ToDbo());
+                _siteEmployeeTypeService.RemoveAllSiteEmployeeTypes(siteId);
+                _siteEmployeeTypeService.AddSiteEmployeeTypes(siteId, site.SiteEmployeeTypes);
+                scope.Complete();
+                return res;
+            }
         }
 
         public int DeleteSite(int siteId)

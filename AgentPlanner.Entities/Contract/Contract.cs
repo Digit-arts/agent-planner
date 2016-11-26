@@ -20,9 +20,11 @@ namespace AgentPlanner.Entities.Contract
         public AssignmentTypes AssignmentTypeId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
+        public int? InvoiceNumber { get; set; }
 
         public ContractType ContractType { get; set; }
         public BillingFrequency BillingFrequency { get; set; }
         public AssignmentType AssignmentType { get; set; }
+        public Client.Site Site { get; set; }
     }
 }

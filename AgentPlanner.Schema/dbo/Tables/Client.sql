@@ -17,9 +17,12 @@
     [IsDeleted]          BIT            NOT NULL,
     [DeletedDate]        DATETIME       NULL,
     [ModificationDate]   DATETIME       NULL,
+    [HourlyRate]         FLOAT (53)     NOT NULL,
     CONSTRAINT [PK_Client] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Client_PaymentMethod] FOREIGN KEY ([PaymentMethodId]) REFERENCES [dbo].[PaymentMethod] ([Id])
 );
+
+
 
 
 

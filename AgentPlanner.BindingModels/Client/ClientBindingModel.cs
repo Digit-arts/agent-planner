@@ -15,5 +15,6 @@
         public byte PaymentMethodId { get; set; }
         public string Comments { get; set; }
         public bool IsActive { get; set; }
+        public double HourlyRate { get; set; }
     }
 }

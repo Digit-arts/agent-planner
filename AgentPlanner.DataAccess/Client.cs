@@ -18,6 +18,7 @@ namespace AgentPlanner.DataAccess
         public Client()
         {
             this.Sites = new HashSet<Site>();
+            this.Quotations = new HashSet<Quotation>();
         }
     
         public int Id { get; set; }
@@ -34,13 +35,16 @@ namespace AgentPlanner.DataAccess
         public byte PaymentMethodId { get; set; }
         public string Comments { get; set; }
         public bool IsActive { get; set; }
+        public System.DateTime CreatedDate { get; set; }
         public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedDate { get; set; }
-        public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> ModificationDate { get; set; }
+        public double HourlyRate { get; set; }
     
         public virtual PaymentMethod PaymentMethod { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Site> Sites { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Quotation> Quotations { get; set; }
     }
 }

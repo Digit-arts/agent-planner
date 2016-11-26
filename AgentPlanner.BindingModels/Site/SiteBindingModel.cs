@@ -1,4 +1,6 @@
-﻿namespace AgentPlanner.BindingModels.Site
+﻿using AgentPlanner.BindingModels.Employee;
+
+namespace AgentPlanner.BindingModels.Site
 {
     public class SiteBindingModel
     {
@@ -14,5 +16,6 @@
         public string EmailAddress { get; set; }
         public string Comments { get; set; }
         public bool IsActive { get; set; }
+        public SiteEmployeeTypeBindingModel[] SiteEmployeeTypes { get; set; }
     }
 }

@@ -40,9 +40,9 @@ namespace AgentPlanner.Web.Controllers
 
         [HttpPost]
         [Route("search")]
-        public EmployeeViewModel[] Search(string searchTerm)
+        public EmployeeViewModel[] Search(int siteId, string searchTerm)
         {
-            return _employeeService.SearchEmployees(searchTerm).ToVms();
+            return _employeeService.SearchEmployees(siteId, searchTerm).ToVms();
         }
 
         // POST: api/employee

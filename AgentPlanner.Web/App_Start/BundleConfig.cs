@@ -12,6 +12,7 @@ namespace AgentPlanner.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                 .Include("~/Scripts/bower_components/jquery/dist/jquery.min.js")
                 .Include("~/Scripts/bower_components/moment/moment.js")
+                .Include("~/Scripts/bower_components/moment-range/dist/moment-range.js")
                 .Include("~/Scripts/bower_components/bootstrap-daterangepicker/daterangepicker.js")
                 .Include("~/Scripts/bower_components/sweetAlert/sweet-alert.min.js")
                 );

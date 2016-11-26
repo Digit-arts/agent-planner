@@ -55,6 +55,7 @@
     <Compile Include="EmployeeViewModelMapper.cs" />
     <Compile Include="PaymentMethodMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuotationViewModelMapper.cs" />
     <Compile Include="ResourceViewModelMapper.cs" />
     <Compile Include="SiteViewModelMapper.cs" />
     <Compile Include="UserViewModelMapper.cs" />

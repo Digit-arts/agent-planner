@@ -18,6 +18,7 @@ namespace AgentPlanner.DataAccess
         public BillingFrequency()
         {
             this.Contracts = new HashSet<Contract>();
+            this.Quotations = new HashSet<Quotation>();
         }
     
         public byte Id { get; set; }
@@ -25,5 +26,7 @@ namespace AgentPlanner.DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contract> Contracts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Quotation> Quotations { get; set; }
     }
 }

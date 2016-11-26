@@ -9,7 +9,7 @@
     [City]             NVARCHAR (50)  NOT NULL,
     [PhoneNumber]      NVARCHAR (18)  NOT NULL,
     [EmailAddress]     NVARCHAR (50)  NOT NULL,
-    [PhotoResouceId]   INT            NOT NULL,
+    [PhotoResouceId]   INT            NULL,
     [DateOfBirth]      DATE           NOT NULL,
     [Comments]         NVARCHAR (255) NULL,
     [IsActive]         BIT            NOT NULL,
@@ -17,9 +17,13 @@
     [IsDeleted]        BIT            NOT NULL,
     [DeletedDate]      DATETIME       NULL,
     [ModificationDate] DATETIME       NULL,
+    [EmployeeTypeId]   TINYINT        NOT NULL,
     CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Employee_EmployeeType] FOREIGN KEY ([EmployeeTypeId]) REFERENCES [dbo].[EmployeeType] ([Id]),
     CONSTRAINT [FK_Employee_Resource] FOREIGN KEY ([PhotoResouceId]) REFERENCES [dbo].[Resource] ([Id])
 );
+
+
 
 
 

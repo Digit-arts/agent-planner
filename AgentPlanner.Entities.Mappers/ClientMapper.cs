@@ -27,6 +27,7 @@ namespace AgentPlanner.Entities.Mappers
                 IsActive = client.IsActive,
                 CreatedDate = client.CreatedDate,
                 ModificationDate = client.ModificationDate,
+                HourlyRate=client.HourlyRate,
                 PaymentMethod = client.PaymentMethod.ToDto()
             };
         }
@@ -57,6 +58,7 @@ namespace AgentPlanner.Entities.Mappers
                 Comments = client.Comments,
                 IsActive = client.IsActive,
                 CreatedDate = client.CreatedDate,
+                HourlyRate = client.HourlyRate,
                 ModificationDate = client.ModificationDate
             };
         }

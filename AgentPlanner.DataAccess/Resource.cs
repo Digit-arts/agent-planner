@@ -24,8 +24,8 @@ namespace AgentPlanner.DataAccess
         public string ResourceName { get; set; }
         public string ResourcePath { get; set; }
         public string ResourceType { get; set; }
-        public System.DateTime CreatedDate { get; set; }
         public string ResourceExtenstion { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }

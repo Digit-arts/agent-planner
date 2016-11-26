@@ -16,12 +16,15 @@
     [CreatedDate]               DATETIME       NOT NULL,
     [ModifiedDate]              DATETIME       NULL,
     [DeletedDate]               DATETIME       NULL,
+    [InvoiceNumber]             INT            NULL,
     CONSTRAINT [PK_Contract] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Contract_AssignmentType] FOREIGN KEY ([AssignmentTypeId]) REFERENCES [dbo].[AssignmentType] ([Id]),
     CONSTRAINT [FK_Contract_BillingFrequency] FOREIGN KEY ([BillingFrequencyId]) REFERENCES [dbo].[BillingFrequency] ([Id]),
     CONSTRAINT [FK_Contract_ContractType] FOREIGN KEY ([ContractTypeId]) REFERENCES [dbo].[ContractType] ([Id]),
     CONSTRAINT [FK_Contract_Site] FOREIGN KEY ([SiteId]) REFERENCES [dbo].[Site] ([Id])
 );
+
+
 
 
 

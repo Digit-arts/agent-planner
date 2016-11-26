@@ -1,7 +1,9 @@
 ﻿using System.Web.Http;
+using AgentPlanner.BindingModels.Employee;
 using AgentPlanner.BindingModels.Mappers;
 using AgentPlanner.BindingModels.Site;
 using AgentPlanner.Services;
+using AgentPlanner.ViewModels.Employee;
 using AgentPlanner.ViewModels.Mappers;
 using AgentPlanner.ViewModels.Site;
 
@@ -11,6 +13,7 @@ namespace AgentPlanner.Web.Controllers
     public class SiteController : BaseController
     {
         private readonly SiteService _siteService;
+
 
         public SiteController()
         {
@@ -40,17 +43,17 @@ namespace AgentPlanner.Web.Controllers
         // POST: api/Site
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Post(SiteBindingModel site)
+        public int Post(SiteBindingModel site)
         {
-            return Ok(_siteService.AddSite(site.ToDto()));
+           return _siteService.AddSite(site.ToDto());
         }
 
         // PUT: api/Site/5
         [HttpPut]
         [Route("{id:int}")]
-        public IHttpActionResult Put(int id, SiteBindingModel site)
+        public int Put(int id, SiteBindingModel site)
         {
-            return Ok(_siteService.UpdateSite(id, site.ToDto()));
+            return _siteService.UpdateSite(id, site.ToDto());
         }
 
         // DELETE: api/Site/5
@@ -66,6 +69,20 @@ namespace AgentPlanner.Web.Controllers
         public bool CodeCheck(string code)
         {
             return _siteService.CheckSiteCode(code);
+        }
+
+        [HttpGet]
+        [Route("employeetypes/{siteId:int}")]
+        public SiteEmployeeTypeViewModel[] GetSiteEmployeeTypes(int siteId)
+        {
+            return new SiteEmployeeTypeService().GetSiteEmployeeTypesForSite(siteId).ToVms();
+        }
+
+        [HttpPost]
+        [Route("employeetypes/{siteId}")]
+        public IHttpActionResult AddEmployeeType(int siteId, SiteEmployeeTypeBindingModel[] model)
+        {
+            return Ok(new SiteEmployeeTypeService().AddSiteEmployeeTypes(siteId, model.ToDtos()));
         }
     }
 }

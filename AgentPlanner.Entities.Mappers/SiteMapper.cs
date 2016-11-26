@@ -62,5 +62,6 @@ namespace AgentPlanner.Entities.Mappers
         {
             return sites.Select(x => x.ToDbo()).ToArray();
         }
+
     }
 }

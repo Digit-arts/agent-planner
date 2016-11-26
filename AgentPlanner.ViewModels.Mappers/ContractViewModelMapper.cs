@@ -85,9 +85,11 @@ namespace AgentPlanner.ViewModels.Mappers
                 SiteId = contract.SiteId,
                 StartDate = contract.StartDate,
                 SundayRateIncrease = contract.SundayRateIncrease,
+                InvoiceNumber = contract.InvoiceNumber,
                 BillingFrequency = contract.BillingFrequency.ToVm(),
                 ContractType = contract.ContractType.ToVm(),
-                AssignmentType = contract.AssignmentType.ToVm()
+                AssignmentType = contract.AssignmentType.ToVm(),
+                Site = contract.Site.ToVm()
             };
         }
 

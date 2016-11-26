@@ -1,0 +1,4 @@
+﻿{
+  "quotation": "~/Templates/Quotation.cshtml",
+  "invoice":  "~/Templates/Invoice.cshtml"
+}

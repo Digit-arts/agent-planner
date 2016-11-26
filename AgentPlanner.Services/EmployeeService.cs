@@ -10,10 +10,12 @@ namespace AgentPlanner.Services
     public class EmployeeService
     {
         private readonly EmployeeRepository _employeeRepository;
+        private readonly SiteEmployeeTypeService _siteEmployeeTypeService;
 
         public EmployeeService()
         {
             _employeeRepository = new EmployeeRepository();
+            _siteEmployeeTypeService = new SiteEmployeeTypeService();
         }
 
         public Employee GetEmployee(int employeeId)
@@ -65,9 +67,18 @@ namespace AgentPlanner.Services
             return _employeeRepository.GetEmployees(pageSize, resultsToSkip).ToDtos();
         }
 
-        public IEnumerable<Employee> SearchEmployees(string searchTerm)
+        public IEnumerable<Employee> SearchEmployees(int siteId, string searchTerm)
         {
-            return _employeeRepository.SearchTerm(searchTerm).ToDtos();
+            var siteEmployeeTypes = _siteEmployeeTypeService.GetSiteEmployeeTypesForSite(siteId);
+
+            var list = new List<DataAccess.Employee>();
+
+            foreach (var siteEmployeeType in siteEmployeeTypes)
+            {
+                list.AddRange(_employeeRepository.SearchTerm(searchTerm, siteEmployeeType.EmployeeTypeId));
+            }
+
+            return list.ToDtos();
         } 
 
         public int GetTotalEmployeesCount()

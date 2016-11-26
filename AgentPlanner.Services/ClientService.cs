@@ -56,16 +56,23 @@ namespace AgentPlanner.Services
         }
 
 
-        public IEnumerable<Client> GetPaginatedClients(int pageSize, int page = 1)
+        public Client[] GetPaginatedClients(int pageSize, int page = 1)
         {
             var resultsToSkip = (page - 1) * pageSize;
 
             return _clientRepository.GetClients(pageSize, resultsToSkip).ToDtos();
         }
-        public IEnumerable<Client> SearchClient(string searchTerm)
+
+        public Client[] SearchClient(string searchTerm)
         {
             return _clientRepository.SearchTerm(searchTerm).ToDtos();
         }
+
+        public Client[] GetAll(int[] clientIds)
+        {
+            return _clientRepository.GetAll(clientIds).ToDtos();
+        }
+
         public int GetTotalClientsCount()
         {
             return _clientRepository.Count();

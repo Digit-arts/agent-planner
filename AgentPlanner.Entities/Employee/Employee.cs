@@ -6,6 +6,7 @@ namespace AgentPlanner.Entities.Employee
     public class Employee
     {
         public int Id { get; set; }
+        public byte EmployeeTypeId { get; set; }
         public string EmployeeCode { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -23,5 +24,6 @@ namespace AgentPlanner.Entities.Employee
         public DateTime? ModificationDate { get; set; }
 
         public Resource Photo { get; set; }
+        public EmployeeType EmployeeType { get; set; }
     }
 }

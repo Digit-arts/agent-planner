@@ -5,6 +5,7 @@ namespace AgentPlanner.BindingModels.Employee
     public class EmployeeBindingModel
     {
         public string EmployeeCode { get; set; }
+        public byte EmployeeTypeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }

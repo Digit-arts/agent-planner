@@ -55,6 +55,7 @@
     <Compile Include="EmployeeMapper.cs" />
     <Compile Include="PaymentMethodMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuotationMapper.cs" />
     <Compile Include="ResourceMapper.cs" />
     <Compile Include="SiteMapper.cs" />
     <Compile Include="UserMapper.cs" />

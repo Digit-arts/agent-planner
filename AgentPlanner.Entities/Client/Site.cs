@@ -1,4 +1,5 @@
 ﻿using System;
+using AgentPlanner.Entities.Employee;
 
 namespace AgentPlanner.Entities.Client
 {
@@ -21,5 +22,8 @@ namespace AgentPlanner.Entities.Client
         public DateTime? ModificationDate { get; set; }
         
         public Client Client { get; set; }
+
+        public SiteEmployeeType[] SiteEmployeeTypes { get; set; }
+
     }
 }

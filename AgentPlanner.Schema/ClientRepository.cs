@@ -23,6 +23,7 @@ namespace AgentPlanner.Repositories
             var dbClient = Get(model.Id);
 
             //dbClient.ClientCode = model.ClientCode;
+            dbClient.HourlyRate = model.HourlyRate;
             dbClient.Name = model.Name;
             dbClient.Address = model.Address;
             dbClient.Address2 = model.Address2;
@@ -62,22 +63,28 @@ namespace AgentPlanner.Repositories
             return GetIQueryable().Any(x => x.ClientCode.Equals(clientCode));
         }
 
-        public IEnumerable<Client> SearchTerm(string searchTerm)
+        public Client[] SearchTerm(string searchTerm)
         {
             return
                 GetIQueryable()
                     .Where(
                         x =>
                             x.EmailAddress.Contains(searchTerm) || x.ClientCode.Contains(searchTerm) ||
-                            x.Name.Contains(searchTerm));
+                            x.Name.Contains(searchTerm)).ToArray();
         }
-        public IEnumerable<Client> GetClients(int pageSize, int skipSize)
+
+        public Client[] GetClients(int pageSize, int skipSize)
         {
             return GetIQueryable()
                 .AsNoTracking()
                 .Skip(() => skipSize)
                 .Take(() => pageSize)
                 .ToArray();
+        }
+
+        public Client[] GetAll(int[] clientIds)
+        {
+            return GetIQueryable().Where(x => clientIds.Contains(x.Id)).ToArray();
         }
 
         public int Count()

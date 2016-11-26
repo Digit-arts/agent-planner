@@ -20,7 +20,8 @@ namespace AgentPlanner.BindingModels.Mappers
                 EmailAddress = client.EmailAddress,
                 PaymentMethodId = client.PaymentMethodId,
                 Comments = client.Comments,
-                IsActive = client.IsActive
+                IsActive = client.IsActive,
+                HourlyRate=client.HourlyRate
             };
         }
     }

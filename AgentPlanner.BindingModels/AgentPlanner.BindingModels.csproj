@@ -50,9 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assignment\AssignmentBindingModel.cs" />
+    <Compile Include="Billing\QuotationBindingModel.cs" />
     <Compile Include="Client\ClientBindingModel.cs" />
     <Compile Include="Contract\ContractBindingModel.cs" />
     <Compile Include="Employee\EmployeeBindingModel.cs" />
+    <Compile Include="Employee\SiteEmployeeTypeBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ResourceBindingModel.cs" />
     <Compile Include="Site\SiteBindingModel.cs" />

@@ -19,7 +19,9 @@ namespace AgentPlanner.BindingModels.Mappers
                 ContactPhoneNumber = site.ContactPhoneNumber,
                 EmailAddress = site.EmailAddress,
                 Comments = site.Comments,
-                IsActive = site.IsActive
+                IsActive = site.IsActive,
+                SiteEmployeeTypes = site.SiteEmployeeTypes.ToDtos()
+                
             };
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using AgentPlanner.ViewModels.Site;
 
 namespace AgentPlanner.ViewModels.Contract
 {
@@ -19,9 +20,11 @@ namespace AgentPlanner.ViewModels.Contract
         public byte AssignmentTypeId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
+        public int? InvoiceNumber { get; set; }
 
         public ContractTypeViewModel ContractType { get; set; }
         public BillingFrequencyViewModel BillingFrequency { get; set; }
         public AssignmentTypeViewModel AssignmentType { get; set; }
+        public SiteViewModel Site { get; set; }
     }
 }

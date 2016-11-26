@@ -61,5 +61,12 @@ namespace AgentPlanner.Web.Controllers
         {
             return _contractService.DeleteContract(id);
         }
+
+        [HttpGet]
+        [Route("createinvoice/{id:int}")]
+        public int CreateContractInvoice(int id)
+        {
+            return _contractService.CreateInvoiceForContract(id);
+        }
     }
 }

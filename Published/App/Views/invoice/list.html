@@ -1,0 +1,29 @@
+﻿<fieldset ng-init="invoiceController.getAllInvoiceBySite()">
+    <legend>Invoices</legend>
+   
+    <div class="row m-t-10">
+        <div class="table-responsive">
+            <table class="table table-condensed table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>{{'Site.Columns.Name' | translate}}</th>
+                        <th>{{'Contract.Columns.StartDate' | translate}}</th>
+                        <th>{{'Contract.Columns.EndDate' | translate}}</th>
+                        <th>{{'Contract.Columns.ContractType' | translate}}</th>
+                       
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in invoiceController.invoices">
+                        <td ng-bind="i.site.name"></td>
+                        <td ng-bind="i.startDate | date:'shortDate'"></td>
+                        <td ng-bind="i.endDate | date:'shortDate'"></td>
+                        <td ng-bind="i.contractType.typeName"></td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
