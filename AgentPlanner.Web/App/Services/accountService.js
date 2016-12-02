@@ -6,6 +6,9 @@ app.service('accountService', [
             setToken:function(token) {
                 $sessionStorage.token = token;
             },
+            deleteToken: function() {
+                delete $sessionStorage.token;
+            },
             setLoggedInUser: function (user) {
                 $sessionStorage.user = user;
             },

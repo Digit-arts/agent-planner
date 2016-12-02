@@ -82,14 +82,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a>
-                                <i class="fa fa-user"></i>
-                                {{'TOP_MENU.ACCOUNT.PROFILE' | translate}}
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a>
+                            <a style="cursor: pointer" ng-click="appController.logout()">
                                 <i class="fa fa-sign-out"></i>
                                 {{'TOP_MENU.ACCOUNT.LOGOUT' | translate}}
                             </a>

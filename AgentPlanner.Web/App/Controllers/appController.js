@@ -1,6 +1,6 @@
 ﻿var app = angular.module('agent_planner');
-app.controller('appController', ['$scope', 'accountService', 'assignmentService', '$uibModal', 'uiCalendarConfig', '$timeout', 'NgTableParams', '$q','contractService',
-    function ($scope, accountService, assignmentService, $uibModal, uiCalendarConfig, $timeout, ngTableParams, $q, contractService) {
+app.controller('appController', ['$scope', 'accountService', 'assignmentService', '$uibModal', 'uiCalendarConfig', '$timeout', 'NgTableParams', '$q','contractService','$state',
+    function ($scope, accountService, assignmentService, $uibModal, uiCalendarConfig, $timeout, ngTableParams, $q, contractService, $state) {
         var scope = this;
 
         scope.startDate = [];
@@ -94,14 +94,19 @@ app.controller('appController', ['$scope', 'accountService', 'assignmentService'
             });
         };
 
-        scope.refreshCalender = function () {
-            $timeout(function () {
+        scope.refreshCalender = function() {
+            $timeout(function() {
                 if (uiCalendarConfig.calendars['assignment_calender']) {
                     uiCalendarConfig.calendars['assignment_calender'].fullCalendar('render');
                 }
             }, 0);
 
-        }
+        };
+
+        scope.logout = function() {
+            accountService.deleteToken();
+            $state.go("login");
+        };
     }
 ]);
 
