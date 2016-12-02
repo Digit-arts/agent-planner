@@ -1,4 +1,5 @@
 ﻿using System;
+using AgentPlanner.Entities.Employee;
 using AgentPlanner.Entities.Enums;
 
 namespace AgentPlanner.Entities.Contract
@@ -26,5 +27,6 @@ namespace AgentPlanner.Entities.Contract
         public BillingFrequency BillingFrequency { get; set; }
         public AssignmentType AssignmentType { get; set; }
         public Client.Site Site { get; set; }
+        public Assignment[] Assignments { get; set; }
     }
 }

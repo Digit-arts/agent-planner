@@ -5,43 +5,44 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9c0429a4cc814a318003506da311cf04" Name="Diagram1">
-        <EntityTypeShape EntityType="AgentPlannerModel.Assignment" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="AgentPlannerModel.AssignmentType" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="AgentPlannerModel.BillingFrequency" Width="1.5" PointX="3.75" PointY="13.875" />
-        <EntityTypeShape EntityType="AgentPlannerModel.Contract" Width="1.5" PointX="6" PointY="3.125" />
-        <EntityTypeShape EntityType="AgentPlannerModel.ContractType" Width="1.5" PointX="3.75" PointY="1" />
-        <EntityTypeShape EntityType="AgentPlannerModel.Employee" Width="1.5" PointX="0.75" PointY="16.75" />
-        <EntityTypeShape EntityType="AgentPlannerModel.EmployeeType" Width="1.5" PointX="1.5" PointY="23" />
-        <EntityTypeShape EntityType="AgentPlannerModel.Log" Width="1.5" PointX="8.75" PointY="8.75" />
-        <EntityTypeShape EntityType="AgentPlannerModel.PaymentMethod" Width="1.5" PointX="1.5" PointY="14" />
-        <EntityTypeShape EntityType="AgentPlannerModel.Resource" Width="1.5" PointX="1.5" PointY="25.375" />
-        <EntityTypeShape EntityType="AgentPlannerModel.Role" Width="1.5" PointX="8.75" PointY="5.625" />
-        <EntityTypeShape EntityType="AgentPlannerModel.Site" Width="1.5" PointX="3.75" PointY="8.375" />
-        <EntityTypeShape EntityType="AgentPlannerModel.User" Width="1.5" PointX="8.75" PointY="1" />
-        <EntityTypeShape EntityType="AgentPlannerModel.UserRole" Width="1.5" PointX="11" PointY="1.5" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Assignment" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentPlannerModel.AssignmentType" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.BillingFrequency" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Client" Width="1.5" PointX="1.5" PointY="8" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Contract" Width="1.5" PointX="3" PointY="2.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.ContractType" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Employee" Width="1.5" PointX="3" PointY="12.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.EmployeeType" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Log" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.PaymentMethod" Width="1.5" PointX="1.5" PointY="10" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.PublicHoliday" Width="1.5" PointX="5.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Quotation" Width="1.5" PointX="3.75" PointY="5.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Resource" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Role" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.Site" Width="1.5" PointX="0.75" PointY="6" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.SiteEmployeeType" Width="1.5" PointX="4" PointY="9.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.User" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="AgentPlannerModel.UserRole" Width="1.5" PointX="5" PointY="3.75" IsExpanded="false" />
         <AssociationConnector Association="AgentPlannerModel.FK_Assignment_AssignmentType" />
         <AssociationConnector Association="AgentPlannerModel.FK_Assignment_Contract" />
         <AssociationConnector Association="AgentPlannerModel.FK_Assignment_Employee" />
         <AssociationConnector Association="AgentPlannerModel.FK_Contract_AssignmentType" />
         <AssociationConnector Association="AgentPlannerModel.FK_Contract_BillingFrequency" />
+        <AssociationConnector Association="AgentPlannerModel.FK_Quotation_BillingFrequency" />
+        <AssociationConnector Association="AgentPlannerModel.FK_Client_PaymentMethod" />
+        <AssociationConnector Association="AgentPlannerModel.FK_Quotation_Client" />
+        <AssociationConnector Association="AgentPlannerModel.FK_Site_Client" />
         <AssociationConnector Association="AgentPlannerModel.FK_Contract_ContractType" />
         <AssociationConnector Association="AgentPlannerModel.FK_Contract_Site" />
+        <AssociationConnector Association="AgentPlannerModel.FK_Quotation_ContractType" />
         <AssociationConnector Association="AgentPlannerModel.FK_Employee_EmployeeType" />
         <AssociationConnector Association="AgentPlannerModel.FK_Employee_Resource" />
-        <AssociationConnector Association="AgentPlannerModel.FK_UserRole_Role" />
-        <AssociationConnector Association="AgentPlannerModel.FK_UserRole_User" />
-        <EntityTypeShape EntityType="AgentPlannerModel.SiteEmployeeType" Width="1.5" PointX="6.375" PointY="15.625" />
         <AssociationConnector Association="AgentPlannerModel.FK_SiteEmployeeTypeEmployeeType" />
-        <AssociationConnector Association="AgentPlannerModel.FK_SiteEmployeeTypeSite" />
-        <EntityTypeShape EntityType="AgentPlannerModel.Client" Width="1.5" PointX="3.75" PointY="17.125" />
-        <AssociationConnector Association="AgentPlannerModel.FK_Client_PaymentMethod" />
-        <AssociationConnector Association="AgentPlannerModel.FK_Site_Client" />
-        <EntityTypeShape EntityType="AgentPlannerModel.Quotation" Width="1.5" PointX="6" PointY="9.375" />
-        <AssociationConnector Association="AgentPlannerModel.FK_Quotation_BillingFrequency" />
-        <AssociationConnector Association="AgentPlannerModel.FK_Quotation_Client" />
-        <AssociationConnector Association="AgentPlannerModel.FK_Quotation_ContractType" />
         <AssociationConnector Association="AgentPlannerModel.FK_Quotation_Site" />
-        <EntityTypeShape EntityType="AgentPlannerModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="AgentPlannerModel.FK_UserRole_Role" />
+        <AssociationConnector Association="AgentPlannerModel.FK_SiteEmployeeTypeSite" />
+        <AssociationConnector Association="AgentPlannerModel.FK_UserRole_User" />
+        <EntityTypeShape EntityType="AgentPlannerModel.BillingRateConfiguration" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

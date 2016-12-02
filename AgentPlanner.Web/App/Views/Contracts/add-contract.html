@@ -4,16 +4,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
                         <div class="form-group" ng-class="{'has-error' : form.$submitted && form.startDate.$invalid}">
-                            <label class="control-label">{{'Contract.Columns.StartDate' | translate}}</label>
-                            <input date-range-picker="" min="contractController.minContractStartDate" options="contractController.datePickerOptions" name="startDate" id="startDate" class="form-control" type="text" ng-model="contractController.contract.startDate" required="">
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group" ng-class="{'has-error' : form.$submitted && form.endDate.$invalid}">
-                            <label class="control-label">{{'Contract.Columns.EndDate' | translate}}</label>
-                            <input date-range-picker="" min="contractController.contract.startDate" options="contractController.datePickerOptions" name="endDate" id="endDate" class="form-control" type="text" ng-model="contractController.contract.endDate" required="">
+                            <label class="control-label">{{'Contract.Columns.Duration' | translate}}</label>
+                            <input date-range-picker="" min="contractController.minContractStartDate" options="contractController.datePickerOptions" name="startDate" id="startDate" class="form-control" type="text" ng-model="contractController.contract.duration" required="">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -36,7 +30,7 @@
             <div class="col-lg-4">
                 <div class="form-group" ng-class="{'has-error' : form.$submitted && form.billingFrequencyTypes.$invalid}">
                     <label class="control-label">{{'Contract.Columns.BillingFrequencies' | translate}}</label>
-                    <select required ng-model="contractController.contract.billingFrequencyId" class="form-control" name="billingFrequencyTypes" id="billingFrequencyTypes" ng-options="billingFrequencyType.id as billingFrequencyType.frequency for billingFrequencyType in contractController.billingFrequencyTypes"></select>
+                    <select required ng-model="contractController.contract.billingFrequencyId" disabled="" class="form-control" name="billingFrequencyTypes" id="billingFrequencyTypes" ng-options="billingFrequencyType.id as billingFrequencyType.frequency for billingFrequencyType in contractController.billingFrequencyTypes"></select>
                 </div>
             </div>
             <div class="col-lg-4">

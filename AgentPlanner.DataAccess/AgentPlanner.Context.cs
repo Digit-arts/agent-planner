@@ -30,20 +30,22 @@ namespace AgentPlanner.DataAccess
         public virtual DbSet<Assignment> Assignments { get; set; }
         public virtual DbSet<AssignmentType> AssignmentTypes { get; set; }
         public virtual DbSet<BillingFrequency> BillingFrequencies { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<ContractType> ContractTypes { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
+        public virtual DbSet<PublicHoliday> PublicHolidays { get; set; }
+        public virtual DbSet<Quotation> Quotations { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Site> Sites { get; set; }
+        public virtual DbSet<SiteEmployeeType> SiteEmployeeTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
-        public virtual DbSet<SiteEmployeeType> SiteEmployeeTypes { get; set; }
-        public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<Quotation> Quotations { get; set; }
+        public virtual DbSet<BillingRateConfiguration> BillingRateConfigurations { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

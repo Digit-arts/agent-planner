@@ -5,6 +5,8 @@ using AgentPlanner.ViewModels.Billing;
 
 namespace AgentPlanner.ViewModels.Mappers
 {
+    #region Quotation View Model Mapper
+
     public static class QuotationViewModelMapper
     {
         public static QuotationViewModel ToVm(this Quotation model)
@@ -38,5 +40,50 @@ namespace AgentPlanner.ViewModels.Mappers
         {
             return model.Select(x => x.ToVm()).ToArray();
         }
+
+        #endregion
+
+        #region BillingRateConfiguration View Model Mapper
+
+        public static BillingRateConfigurationViewModel ToVm(this BillingRateConfiguration billingRateConfiguration)
+        {
+            if (billingRateConfiguration == null) return null;
+
+            return new BillingRateConfigurationViewModel
+            {
+                Id = billingRateConfiguration.Id,
+                HolidayPercentageIncrease = billingRateConfiguration.HolidayPercentageIncrease,
+                NightTimePercentageIncrease = billingRateConfiguration.NightTimePercentageIncrease,
+                WeekendPercentageIncrease = billingRateConfiguration.WeekendPercentageIncrease
+            };
+        }
+
+        public static BillingRateConfigurationViewModel[] ToVms(
+            this IEnumerable<BillingRateConfiguration> billingRateConfigurations)
+        {
+            return  billingRateConfigurations.Select(x => x.ToVm()).ToArray();
+        }
+
+        #endregion
+
+        #region PublicHoliday View Model Mapper
+
+        public static PublicHolidayViewModel ToVm(this PublicHoliday publicHoliday)
+        {
+            if (publicHoliday == null) return null;
+
+            return new PublicHolidayViewModel
+            {
+                Id = publicHoliday.Id,
+                HolidayDate = publicHoliday.HolidayDate
+            };
+        }
+
+        public static PublicHolidayViewModel[] ToVms(this IEnumerable<PublicHoliday> publicHolidayViewModels)
+        {
+            return publicHolidayViewModels.Select(x => x.ToVm()).ToArray();
+        }
+
+        #endregion
     }
 }

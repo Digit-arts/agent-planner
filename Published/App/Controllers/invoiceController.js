@@ -13,7 +13,9 @@ app.controller('invoiceController', [
             });
         };
 
-       
+        scope.export = function (id) {
+            window.location.href = "/api/invoice/export/" + id;
+        }
        
     }
 ]);

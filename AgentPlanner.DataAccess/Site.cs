@@ -18,8 +18,8 @@ namespace AgentPlanner.DataAccess
         public Site()
         {
             this.Contracts = new HashSet<Contract>();
-            this.SiteEmployeeTypes = new HashSet<SiteEmployeeType>();
             this.Quotations = new HashSet<Quotation>();
+            this.SiteEmployeeTypes = new HashSet<SiteEmployeeType>();
         }
     
         public int Id { get; set; }
@@ -40,12 +40,12 @@ namespace AgentPlanner.DataAccess
         public Nullable<System.DateTime> DeletedDate { get; set; }
         public Nullable<System.DateTime> ModificationDate { get; set; }
     
+        public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contract> Contracts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SiteEmployeeType> SiteEmployeeTypes { get; set; }
-        public virtual Client Client { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quotation> Quotations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SiteEmployeeType> SiteEmployeeTypes { get; set; }
     }
 }

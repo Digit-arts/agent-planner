@@ -18,6 +18,14 @@ namespace AgentPlanner.Entities.Mappers
                 EmployeeId = assignment.EmployeeId,
                 StartDateTime = assignment.StartDateTime,
                 EndDateTime = assignment.EndDateTime,
+                TotalHolidayHours = assignment.TotalHolidayHours,
+                TotalNightTimeHours = assignment.TotalNightTimeHours,
+                TotalRegularTimeHours = assignment.TotalRegularTimeHours,
+                TotalWeekEndHours = assignment.TotalWeekEndHours,
+                NightTimeHoursRate = assignment.NightTimeHoursRate,
+                HolidayHoursRate = assignment.HolidayHoursRate,
+                WeekHoursRate = assignment.WeekHoursRate,
+                RegularHoursRate = assignment.RegularHoursRate,
                 Employee = assignment.Employee.ToDto(),
                 AssignmentType = assignment.AssignmentType.ToDto()
             };
@@ -37,7 +45,15 @@ namespace AgentPlanner.Entities.Mappers
                 ContractId = assignment.ContractId,
                 EmployeeId = assignment.EmployeeId,
                 StartDateTime = assignment.StartDateTime,
-                EndDateTime = assignment.EndDateTime
+                EndDateTime = assignment.EndDateTime,
+                TotalRegularTimeHours = assignment.TotalRegularTimeHours,
+                TotalNightTimeHours = assignment.TotalNightTimeHours,
+                TotalHolidayHours = assignment.TotalHolidayHours,
+                TotalWeekEndHours = assignment.TotalWeekEndHours,
+                RegularHoursRate = assignment.RegularHoursRate,
+                NightTimeHoursRate = assignment.NightTimeHoursRate,
+                HolidayHoursRate =  assignment.HolidayHoursRate,
+                WeekHoursRate = assignment.WeekHoursRate,
             };
         }
     }

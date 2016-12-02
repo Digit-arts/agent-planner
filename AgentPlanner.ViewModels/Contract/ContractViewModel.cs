@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using AgentPlanner.ViewModels.Assignment;
 using AgentPlanner.ViewModels.Site;
 
 namespace AgentPlanner.ViewModels.Contract
@@ -26,5 +28,14 @@ namespace AgentPlanner.ViewModels.Contract
         public BillingFrequencyViewModel BillingFrequency { get; set; }
         public AssignmentTypeViewModel AssignmentType { get; set; }
         public SiteViewModel Site { get; set; }
+        public AssignmentViewModel[] AssignmentViewModels { get; set; }
+
+        public double InvoiceTotal
+        {
+            get
+            {
+                return AssignmentViewModels?.Sum(assignmentViewModel => assignmentViewModel.TotalAmount) ?? 0;
+            }
+        }
     }
 }

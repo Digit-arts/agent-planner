@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Assignment\AssignmentViewModel.cs" />
     <Compile Include="Assignment\AssignmentViewModelList.cs" />
+    <Compile Include="Billing\BillingRateConfigurationViewModel.cs" />
+    <Compile Include="Billing\PublicHolidayViewModel.cs" />
     <Compile Include="Billing\QuotationViewModel.cs" />
     <Compile Include="Client\ClientListViewModel.cs" />
     <Compile Include="Client\ClientViewModel.cs" />

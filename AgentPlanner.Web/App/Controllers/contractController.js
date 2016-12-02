@@ -21,8 +21,13 @@ app.controller('contractController', [
                 });
             }
         });
-
+        scope.contract = {
+            duration: {},
+            billingFrequencyId: 1
+        };
         scope.updateContract = function () {
+            scope.contract.startDate = scope.contract.duration.startDate.format();
+            scope.contract.endDate = scope.contract.duration.endDate.format();
             contractService.updateContract($stateParams.contractId, scope.contract, function (response) {
                 notificationService.success("Contract updated");
                 $state.go('sites.contracts.list', { 'siteId': $stateParams.siteId });
@@ -32,7 +37,12 @@ app.controller('contractController', [
         scope.getContract = function () {
             contractService.getContract($stateParams.contractId, function (response) {
                 scope.contract = response;
+                scope.contract.duration = {
+                    startDate: scope.contract.startDate,
+                    endDate: scope.contract.endDate
+                }
             });
+            
             scope.getBillingFrequencyTypes();
             scope.getContractTypes();
             scope.getAssignmentTypes();
@@ -48,8 +58,10 @@ app.controller('contractController', [
             });
         }
         scope.datePickerOptions = {
-            singleDatePicker: true,
-            showDropdowns: true
+            showDropdowns: true,
+            locale: {
+                format: 'MM/DD/YYYY'
+            }
         };
         scope.getAssignmentTypes = function () {
             assignmentTypeService.getAssignmentTypes(function (response) {
@@ -58,6 +70,8 @@ app.controller('contractController', [
         }
         scope.addContract = function (form) {
             scope.contract.siteId = $stateParams.siteId;
+            scope.contract.startDate = scope.contract.duration.startDate.format();
+            scope.contract.endDate = scope.contract.duration.endDate.format();
             contractService.addContract(scope.contract, function (response) {
                 scope.contract = {};
                 form.$setPristine();
@@ -76,8 +90,13 @@ app.controller('contractController', [
             notificationService.showConfirmationDialog('Confirm delete', 'Are you sure you want to delete this contract?', 'info', del);
         }
 
-        scope.createContractInvoice = function(contractId) {
-            contractService.createInvoice(contractId, function(response) {
+        scope.createContractInvoice = function (contract) {
+
+            if (scope.disableInvoiceCreateButton(contract)) {
+                return;
+            }
+
+            contractService.createInvoice(contract.id, function(response) {
                 scope.contractTable.reload();
             });
         }

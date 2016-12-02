@@ -114,7 +114,8 @@ namespace AgentPlanner.Entities.Mappers
                 BillingFrequency = contract.BillingFrequency.ToDto(),
                 ContractType = contract.ContractType.ToDto(),
                 AssignmentType = contract.AssignmentType.ToDto(),
-                Site = contract.Site.ToDto()
+                Site = contract.Site.ToDto(),
+                Assignments = contract.Assignments.ToDtos()
             };
         }
 

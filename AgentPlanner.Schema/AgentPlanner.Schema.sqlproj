@@ -89,6 +89,8 @@
     <Build Include="dbo\Tables\EmployeeType.sql" />
     <Build Include="dbo\Tables\SiteEmployeeType.sql" />
     <Build Include="dbo\Tables\Quotation.sql" />
+    <Build Include="dbo\Tables\BillingRateConfiguration.sql" />
+    <Build Include="dbo\Tables\PublicHoliday.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />

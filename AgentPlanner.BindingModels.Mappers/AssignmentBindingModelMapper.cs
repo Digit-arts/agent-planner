@@ -13,7 +13,11 @@ namespace AgentPlanner.BindingModels.Mappers
                 ContractId = assignment.ContractId,
                 EmployeeId = assignment.EmployeeId,
                 StartDateTime = assignment.StartDateTime,
-                EndDateTime = assignment.EndDateTime
+                EndDateTime = assignment.EndDateTime,
+                TotalHolidayHours = assignment.TotalHolidayHours,
+                TotalNightTimeHours = assignment.TotalNightTimeHours,
+                TotalRegularTimeHours = assignment.TotalRegularTimeHours,
+                TotalWeekEndHours = assignment.TotalWeekEndHours
             };
         }
     }

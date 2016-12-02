@@ -24,6 +24,14 @@ namespace AgentPlanner.Repositories
             assignment.AssignmentTypeId = model.AssignmentTypeId;
             assignment.StartDateTime = model.StartDateTime;
             assignment.EndDateTime = model.EndDateTime;
+            assignment.TotalHolidayHours = model.TotalHolidayHours;
+            assignment.TotalNightTimeHours = model.TotalNightTimeHours;
+            assignment.TotalRegularTimeHours = model.TotalRegularTimeHours;
+            assignment.TotalWeekEndHours = model.TotalWeekEndHours;
+            assignment.HolidayHoursRate = model.HolidayHoursRate;
+            assignment.NightTimeHoursRate = model.NightTimeHoursRate;
+            assignment.WeekHoursRate = model.WeekHoursRate;
+            assignment.RegularHoursRate = model.RegularHoursRate;
 
             return SaveChanges();
         }
@@ -84,6 +92,11 @@ namespace AgentPlanner.Repositories
         public Assignment[] GetAssignmentsByContractId(int contractId, DateTime startDate, DateTime endDate)
         {
             return GetIQueryable().Where(x => x.ContractId.Equals(contractId) && (x.StartDateTime >= startDate && x.EndDateTime <= endDate)).ToArray();
+        }
+
+        public Assignment[] GetAssignmentsByContractId(int contractId)
+        {
+            return GetIQueryable().Where(x => x.ContractId.Equals(contractId)).ToArray();
         }
 
         public Assignment[] GetAssignmentsByAssignmentTypeId(int assignmentTypeId)

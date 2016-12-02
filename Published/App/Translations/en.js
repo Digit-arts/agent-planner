@@ -96,6 +96,7 @@ var en = {
         Columns: {
             StartDate: 'Start Date',
             EndDate: 'End Date',
+            Duration:"Duration",
             ContractType: 'Contract Type',
             BillingRate: 'Billing Rate',
             BillingFrequency: 'Billing Frequency',

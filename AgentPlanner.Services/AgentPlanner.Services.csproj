@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssignmentService.cs" />
+    <Compile Include="BillingRateConfigurationService.cs" />
     <Compile Include="ContractTypeService.cs" />
     <Compile Include="BillingFrequencyService.cs" />
     <Compile Include="AssignmentTypeService.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="PaymentMethodService.cs" />
     <Compile Include="PdfGenerationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicHolidayService.cs" />
     <Compile Include="QuotationService.cs" />
     <Compile Include="ResourceService.cs" />
     <Compile Include="SiteEmployeeTypeService.cs" />

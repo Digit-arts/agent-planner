@@ -89,7 +89,8 @@ namespace AgentPlanner.ViewModels.Mappers
                 BillingFrequency = contract.BillingFrequency.ToVm(),
                 ContractType = contract.ContractType.ToVm(),
                 AssignmentType = contract.AssignmentType.ToVm(),
-                Site = contract.Site.ToVm()
+                Site = contract.Site.ToVm(),
+                AssignmentViewModels = contract.Assignments.ToVms()
             };
         }
 

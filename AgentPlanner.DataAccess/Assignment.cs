@@ -21,6 +21,14 @@ namespace AgentPlanner.DataAccess
         public System.DateTime StartDateTime { get; set; }
         public System.DateTime EndDateTime { get; set; }
         public bool IsDeleted { get; set; }
+        public Nullable<double> TotalRegularTimeHours { get; set; }
+        public Nullable<double> TotalHolidayHours { get; set; }
+        public Nullable<double> TotalWeekEndHours { get; set; }
+        public Nullable<double> TotalNightTimeHours { get; set; }
+        public Nullable<double> RegularHoursRate { get; set; }
+        public Nullable<double> HolidayHoursRate { get; set; }
+        public Nullable<double> WeekHoursRate { get; set; }
+        public Nullable<double> NightTimeHoursRate { get; set; }
     
         public virtual AssignmentType AssignmentType { get; set; }
         public virtual Contract Contract { get; set; }

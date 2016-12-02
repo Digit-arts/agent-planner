@@ -10,7 +10,7 @@
                         <th>{{'Contract.Columns.StartDate' | translate}}</th>
                         <th>{{'Contract.Columns.EndDate' | translate}}</th>
                         <th>{{'Contract.Columns.ContractType' | translate}}</th>
-                       
+                        <th class="text-nowrap"></th>
                         
                     </tr>
                 </thead>
@@ -20,7 +20,11 @@
                         <td ng-bind="i.startDate | date:'shortDate'"></td>
                         <td ng-bind="i.endDate | date:'shortDate'"></td>
                         <td ng-bind="i.contractType.typeName"></td>
-                       
+                        <td>
+                            <button class="btn btn-info" uib-tooltip="Print quotation" ng-click="invoiceController.export(i.id)">
+                                <i class="fa fa-print"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

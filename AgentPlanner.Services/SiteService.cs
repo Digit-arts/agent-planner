@@ -73,7 +73,14 @@ namespace AgentPlanner.Services
 
         public int DeleteSite(int siteId)
         {
-            return _siteRepository.Remove(siteId);
+            var res =  _siteRepository.Remove(siteId);
+            var contractService = new ContractService();
+            var contracts = contractService.GetAll(siteId);
+            foreach (var contract in contracts)
+            {
+                contractService.DeleteContract(contract.Id);
+            }
+            return res;
         }
 
         public int GetTotalSiteCount()

@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Billing\BillingRateConfiguration.cs" />
+    <Compile Include="Billing\PublicHoliday.cs" />
     <Compile Include="Billing\Quotation.cs" />
     <Compile Include="Client\Client.cs" />
     <Compile Include="Client\PaymentMethod.cs" />
@@ -65,12 +67,14 @@
     <Compile Include="Enums\BillingFrequencies.cs" />
     <Compile Include="Enums\ContractTypes.cs" />
     <Compile Include="Enums\PaymentMethod.cs" />
+    <Compile Include="Enums\RateIncrease.cs" />
     <Compile Include="Enums\Roles.cs" />
     <Compile Include="Exceptions\BaseExpection.cs" />
     <Compile Include="Exceptions\ClientCodeDuplicateException.cs" />
     <Compile Include="Exceptions\ContractAssignmentDateException.cs" />
     <Compile Include="Exceptions\EmployeeCodeDuplicateException.cs" />
     <Compile Include="Exceptions\InvalidEmailOrPasswordException.cs" />
+    <Compile Include="Exceptions\InvoiceAlreadyCreatedException.cs" />
     <Compile Include="Exceptions\SiteCodeDuplicateException.cs" />
     <Compile Include="Exceptions\UserRoleNotProvidedException.cs" />
     <Compile Include="Exceptions\UserWithSameEmailException.cs" />

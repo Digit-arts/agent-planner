@@ -1,0 +1,150 @@
+﻿@model AgentPlanner.ViewModels.Contract.ContractViewModel
+
+<style>
+    .col-lg-6,
+    .col-sm-6 {
+        width: 50%;
+        float: left;
+    }
+
+    /*.table > thead > tr > td.success,
+    .table > tbody > tr > td.success,
+    .table > tfoot > tr > td.success,
+    .table > thead > tr > th.success,
+    .table > tbody > tr > th.success,
+    .table > tfoot > tr > th.success,
+    .table > thead > tr.success > td,
+    .table > tbody > tr.success > td,
+    .table > tfoot > tr.success > td,
+    .table > thead > tr.success > th,
+    .table > tbody > tr.success > th,
+    .table > tfoot > tr.success > th {
+        background-color: grey;
+    }*/
+
+    .table > thead > tr > th,
+    .table > thead > tr > td {
+        text-align: center;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        @*<div class="col-sm-6">
+            <p>
+                <b>Admin Company Name</b>
+            </p>
+            <p>
+                <b>SIRET</b>: Admin company siret
+            </p>
+            <p>
+                <b>TVA</b>: Admin Company VAT
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p>
+                <b>@Model.Client.Name</b>
+            </p>
+            <p>
+                <b>SIRET</b>: Admin company siret
+            </p>
+            <p>
+                <b>TVA</b>: @Model.Client.VatNumber
+            </p>
+        </div>*@
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div>
+                <b>Generation Date: </b> @Model.CreatedDate
+            </div>
+            <p>
+                <h2>Fature n° @Model.Id</h2>
+            </p>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-condensed table-bordered text-center">
+                <thead>
+                    <tr class="warning">
+                        <th>Site</th>
+                        <th>Date de début</th>
+                        <th> Date de fin</th>
+                        <th>Type de prestation</th>
+                        <th>Nom de l'agent</th>
+                        <th> Nombre d'heures </th>
+                        <th>Tarif horraire </th>
+                        <th>TOTAL HT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var a in Model.AssignmentViewModels)
+                {
+                    <tr class="info">
+                        <td>@Model.Site.Name</td>
+                        <td>@a.StartDateTime.ToString("d")</td>
+                        <td>@a.EndDateTime.ToString("d")</td>
+                        <td>@Model.ContractType.TypeName</td>
+                        <td>@a.Employee.FirstName @a.Employee.LastName</td>
+                        <td>@a.TotalHours.ToString("N2") </td>
+                        <td>@a.RegularHoursRate</td>
+                        <td>@(a.TotalHours*a.RegularHoursRate)</td>
+
+                    </tr>
+
+                    if (a.TotalWeekEndHours.HasValue && a.TotalWeekEndHours.Value > 0)
+                    {
+                        <tr class="info">
+                            <td>@Model.Site.Name</td>
+                            <td>@a.StartDateTime.ToString("d")</td>
+                            <td>@a.EndDateTime.ToString("d")</td>
+                            <td>@Model.ContractType.TypeName</td>
+                            <td>@a.Employee.FirstName @a.Employee.LastName</td>
+                            <td>@a.TotalWeekEndHours.Value.ToString("N2") </td>
+                            <td>@a.WeekHoursRate</td>
+                            <td>@(a.TotalWeekEndHours * a.WeekHoursRate)</td>
+
+                        </tr>
+                    }
+
+                    if (a.TotalNightTimeHours.HasValue && a.TotalNightTimeHours.Value > 0)
+                    {
+                        <tr class="info">
+                            <td>@Model.Site.Name</td>
+                            <td>@a.StartDateTime.ToString("d")</td>
+                            <td>@a.EndDateTime.ToString("d")</td>
+                            <td>@Model.ContractType.TypeName</td>
+                            <td>@a.Employee.FirstName @a.Employee.LastName</td>
+                            <td>@a.TotalNightTimeHours.Value.ToString("N2") </td>
+                            <td>@a.NightTimeHoursRate</td>
+                            <td>@(a.TotalNightTimeHours * a.NightTimeHoursRate)</td>
+
+                        </tr>
+                    }
+
+                    if (a.TotalHolidayHours.HasValue && a.TotalHolidayHours.Value > 0)
+                    {
+                        <tr class="info">
+                            <td>@Model.Site.Name</td>
+                            <td>@a.StartDateTime.ToString("d")</td>
+                            <td>@a.EndDateTime.ToString("d")</td>
+                            <td>@Model.ContractType.TypeName</td>
+                            <td>@a.Employee.FirstName @a.Employee.LastName</td>
+                            <td>@a.TotalHolidayHours.Value.ToString("N2") </td>
+                            <td>@a.HolidayHoursRate</td>
+                            <td>@(a.TotalHolidayHours * a.HolidayHoursRate)</td>
+
+                        </tr>
+                    }
+
+                }
+                    <tr>
+            <td colspan="7" style="text-align: right"><b>Total</b></td>
+            <td colspan="1"><b>@Model.InvoiceTotal.ToString("C")</b></td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssignmentRepository.cs" />
+    <Compile Include="BillingRateConfigurationRepository.cs" />
     <Compile Include="ContractTypeRepository.cs" />
     <Compile Include="AssignmentTypeRepository.cs" />
     <Compile Include="BillingFrequencyRepository.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="EmployeeTypeRepository.cs" />
     <Compile Include="PaymentMethodRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicHolidayRepository.cs" />
     <Compile Include="QuotationRepository.cs" />
     <Compile Include="ResourceRepository.cs" />
     <Compile Include="SiteEmployeeTypeRepository.cs" />

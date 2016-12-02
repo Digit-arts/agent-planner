@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AgentPlanner.Entities.Contract;
+using AgentPlanner.Entities.Enums;
+using AgentPlanner.Entities.Exceptions;
 using AgentPlanner.Entities.Mappers;
 using AgentPlanner.Repositories;
 
@@ -8,7 +11,7 @@ namespace AgentPlanner.Services
     public class ContractService
     {
         private readonly ContractRepository _contractRepository;
-
+      
         public ContractService()
         {
             _contractRepository = new ContractRepository();
@@ -44,7 +47,14 @@ namespace AgentPlanner.Services
         }
         public int DeleteContract(int id)
         {
-            return _contractRepository.Remove(id);
+            var res =  _contractRepository.Remove(id);
+            var assignmentService = new AssignmentService();
+            var assignments = assignmentService.GetAssignmentsByContractId(id);
+            foreach (var assignment in assignments)
+            {
+                assignmentService.DeleteAssignment(assignment.Id);
+            }
+            return res;
         }
 
         public Contract[] GetContractsForSites(int[] siteIds)
@@ -65,9 +75,63 @@ namespace AgentPlanner.Services
 
         public int CreateInvoiceForContract(int contractId)
         {
+            AssignmentService assignmentService = new AssignmentService();
             var contract = _contractRepository.Get(contractId);
+
+            if(contract.InvoiceNumber.HasValue && contract.InvoiceNumber >= 1) throw new InvoiceAlreadyCreatedException();
+
+            var assignments = assignmentService.GetAssignmentsByContractId(contractId);
+
+
+            foreach (var assignment in assignments)
+            {
+                // we must alwasys calculate the hours even if SundayRateIncrease, NightTimeRateIncrease , PublicHolidayRateIncrease is false.
+                // if false hours put in under these days will be regular hours.
+                // if true you will increase the hourly rate percentage
+                assignment.TotalWeekEndHours = assignmentService.CalculateWeekEndHours(assignment);
+                if (contract.SundayRateIncrease)
+                {
+                    assignment.WeekHoursRate = assignmentService.AddPercentageIncreaseInRate(contract.BillingRate, RateIncrease.Weekend);
+                }
+                else
+                {
+                    assignment.WeekHoursRate = contract.BillingRate;
+                }
+
+                assignment.TotalNightTimeHours = assignmentService.CalculateNightTimeHours(assignment);
+                if (contract.NightTimeRateIncrease)
+                {
+                    assignment.NightTimeHoursRate = assignmentService.AddPercentageIncreaseInRate(contract.BillingRate,
+                        RateIncrease.Night);
+                }
+                else
+                {
+                    assignment.NightTimeHoursRate = contract.BillingRate;
+                }
+
+                assignment.TotalHolidayHours = assignmentService.CalculateHolidayHours(assignment);
+                if (contract.PublicHolidayRateIncrease)
+                {
+                    assignment.HolidayHoursRate = assignmentService.AddPercentageIncreaseInRate(contract.BillingRate,
+                        RateIncrease.Holiday);
+                }
+                else
+                {
+                    assignment.HolidayHoursRate = contract.BillingRate;
+                }
+
+                assignment.TotalRegularTimeHours = assignmentService.CalculateRegularTimeHours(assignment);
+                assignment.RegularHoursRate = contract.BillingRate;
+
+                assignmentService.UpdateAssignment(assignment.Id, assignment);
+            }
+
+
+            
             contract.InvoiceNumber = 1;
             return _contractRepository.Update(contract);
         }
+
+        
     }
 }
