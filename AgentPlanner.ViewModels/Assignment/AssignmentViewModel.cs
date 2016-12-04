@@ -23,7 +23,21 @@ namespace AgentPlanner.ViewModels.Assignment
         public Contract.ContractViewModel Contract { get; set; }
         public Employee.EmployeeViewModel Employee { get; set; }
 
-        public double TotalHours => TotalRegularTimeHours ?? + TotalNightTimeHours ?? 0;
-        public double TotalAmount => TotalHours*RegularHoursRate ?? 0;
+
+
+        //public double TotalHours => TotalRegularTimeHours ?? 0;
+        //public double TotalAmount => TotalHours*RegularHoursRate ?? 0;
+
+        public double TotalAmount
+        {
+            get
+            {
+                var totalRegularAmount = (TotalRegularTimeHours ?? 0)*(RegularHoursRate ?? 0);
+                var totalNightAmount = (TotalNightTimeHours ?? 0)*(NightTimeHoursRate ?? 0);
+                var totalWeekendAmount = (TotalWeekEndHours ?? 0)*(WeekHoursRate ?? 0);
+                var totalHolidayAmount = (TotalHolidayHours ?? 0)*(HolidayHoursRate ?? 0);
+                return totalWeekendAmount + totalRegularAmount + totalNightAmount + totalHolidayAmount;
+            }
+        }
     }
 }

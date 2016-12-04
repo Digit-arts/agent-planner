@@ -81,15 +81,16 @@
                 <tbody>
                 @foreach (var a in Model.AssignmentViewModels)
                 {
+                    var totalRegularHours = a.TotalRegularTimeHours ?? 0;
                     <tr class="info">
                         <td>@Model.Site.Name</td>
                         <td>@a.StartDateTime.ToString("d")</td>
                         <td>@a.EndDateTime.ToString("d")</td>
                         <td>@Model.ContractType.TypeName</td>
                         <td>@a.Employee.FirstName @a.Employee.LastName</td>
-                        <td>@a.TotalHours.ToString("N2") </td>
+                        <td>@totalRegularHours.ToString("N2")</td>
                         <td>@a.RegularHoursRate</td>
-                        <td>@(a.TotalHours*a.RegularHoursRate)</td>
+                        <td>@((totalRegularHours * (a.RegularHoursRate ?? 0)).ToString("N2"))</td>
 
                     </tr>
 
@@ -103,7 +104,7 @@
                             <td>@a.Employee.FirstName @a.Employee.LastName</td>
                             <td>@a.TotalWeekEndHours.Value.ToString("N2") </td>
                             <td>@a.WeekHoursRate</td>
-                            <td>@(a.TotalWeekEndHours * a.WeekHoursRate)</td>
+                            <td>@((a.TotalWeekEndHours.Value * (a.WeekHoursRate ?? 0)).ToString("N2") )</td>
 
                         </tr>
                     }
@@ -118,7 +119,7 @@
                             <td>@a.Employee.FirstName @a.Employee.LastName</td>
                             <td>@a.TotalNightTimeHours.Value.ToString("N2") </td>
                             <td>@a.NightTimeHoursRate</td>
-                            <td>@(a.TotalNightTimeHours * a.NightTimeHoursRate)</td>
+                            <td>@((a.TotalNightTimeHours.Value * (a.NightTimeHoursRate ?? 0) ).ToString("N2"))</td>
 
                         </tr>
                     }
@@ -133,7 +134,7 @@
                             <td>@a.Employee.FirstName @a.Employee.LastName</td>
                             <td>@a.TotalHolidayHours.Value.ToString("N2") </td>
                             <td>@a.HolidayHoursRate</td>
-                            <td>@(a.TotalHolidayHours * a.HolidayHoursRate)</td>
+                            <td>@((a.TotalHolidayHours.Value * (a.HolidayHoursRate ?? 0)).ToString("N2") )</td>
 
                         </tr>
                     }
