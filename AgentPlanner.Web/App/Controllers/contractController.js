@@ -98,6 +98,7 @@ app.controller('contractController', [
 
             contractService.createInvoice(contract.id, function(response) {
                 scope.contractTable.reload();
+                window.location.href = "/api/invoice/export/" + contract.id;
             });
         }
 

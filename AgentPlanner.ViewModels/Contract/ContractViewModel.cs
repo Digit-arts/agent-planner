@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AgentPlanner.ViewModels.Assignment;
+using AgentPlanner.ViewModels.Client;
 using AgentPlanner.ViewModels.Site;
 
 namespace AgentPlanner.ViewModels.Contract

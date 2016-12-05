@@ -90,7 +90,7 @@ namespace AgentPlanner.ViewModels.Mappers
                 ContractType = contract.ContractType.ToVm(),
                 AssignmentType = contract.AssignmentType.ToVm(),
                 Site = contract.Site.ToVm(),
-                AssignmentViewModels = contract.Assignments.ToVms()
+                AssignmentViewModels = contract.Assignments.ToVms(),
             };
         }
 
